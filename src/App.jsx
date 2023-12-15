@@ -7,20 +7,20 @@ import NewTask from "./pages/NewTask";
 import Home from "./pages/Home";
 import Habits from "./pages/Habits";
 import NewHabit from "./pages/NewHabit";
+import NavbarLayout from "./pages/NavbarLayout";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <>
-      <div>Placeholder for header/navbar</div>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/tasks" element={<Tasks />} />
-        <Route path="/newTask" element={<NewTask />} />
-        <Route path="/habits" element={<Habits />} />
-        <Route path="/newHabit" element={<NewHabit />} />
-        <Route path="/friends" element={<Friends />} />
+        <Route element={<NavbarLayout />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/tasks" element={<Tasks />} />
+          <Route path="/newTask" element={<NewTask />} />
+          <Route path="/habits" element={<Habits />} />
+          <Route path="/newHabit" element={<NewHabit />} />
+          <Route path="/friends" element={<Friends />} />
+        </Route>
       </Routes>
     </>
   );
