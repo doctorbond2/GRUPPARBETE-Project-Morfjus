@@ -1,0 +1,11 @@
+@import "styles/friends";
+@import "styles/habits";
+@import "styles/home";
+@import "styles/tasks";
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+@import '~bootstrap/scss/bootstrap'
