@@ -7,7 +7,12 @@ import { Routes, Route } from "react-router";
 function App() {
   const [count, setCount] = useState(0);
 
-  return <>HÄR SKARE BLI ROUTES, Hallå var är Routes</>;
+  return (
+    <>
+      <div>Placeholder for header/navbar</div>
+      <Routes></Routes>
+    </>
+  );
 }
 
 export default App;
