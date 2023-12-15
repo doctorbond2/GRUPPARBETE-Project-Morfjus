@@ -7,7 +7,7 @@ import { Routes, Route } from "react-router";
 function App() {
   const [count, setCount] = useState(0);
 
-  return <>HÄR SKARE BLI ROUTES</>;
+  return <>Micke ska va här</>;
 }
 
 export default App;
