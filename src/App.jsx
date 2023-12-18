@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import { Routes, Route } from "react-router";
 import Friends from "./pages/Friends";
@@ -10,16 +10,38 @@ import NewHabit from "./pages/NewHabit";
 import NavbarLayout from "./pages/NavbarLayout";
 
 function App() {
+  const [tasks, setTasks] = useState([]);
+  const [friends, setFriends] = useState([]);
+  const [habits, setHabits] = useState([]);
   return (
     <>
       <Routes>
         <Route element={<NavbarLayout />}>
-          <Route path="/" element={<Home />} />
-          <Route path="/tasks" element={<Tasks />} />
-          <Route path="/newTask" element={<NewTask />} />
-          <Route path="/habits" element={<Habits />} />
-          <Route path="/newHabit" element={<NewHabit />} />
-          <Route path="/friends" element={<Friends />} />
+          <Route
+            path="/"
+            element={
+              <Home
+                {...{ tasks, setTasks, friends, setFriends, habits, setHabits }}
+              />
+            }
+          />
+          <Route path="/tasks" element={<Tasks {...{ tasks, setTasks }} />} />
+          <Route
+            path="/newTask"
+            element={<NewTask {...{ tasks, setTasks }} />}
+          />
+          <Route
+            path="/habits"
+            element={<Habits {...{ habits, setHabits }} />}
+          />
+          <Route
+            path="/newHabit"
+            element={<NewHabit {...{ habits, setHabits }} />}
+          />
+          <Route
+            path="/friends"
+            element={<Friends {...{ friends, setFriends }} />}
+          />
         </Route>
       </Routes>
     </>
