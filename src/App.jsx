@@ -10,9 +10,15 @@ import NewHabit from "./pages/NewHabit";
 import NavbarLayout from "./pages/NavbarLayout";
 
 function App() {
-  const [tasks, setTasks] = useState([]);
+  const dummyTasks = [
+    { id: 1, title: "Do dishes", completed: false },
+    { id: 2, title: "Feed fish", completed: true },
+    { id: 3, title: "Walk cat", completed: false },
+  ];
+  const [tasks, setTasks] = useState(dummyTasks);
   const [friends, setFriends] = useState([]);
   const [habits, setHabits] = useState([]);
+
   return (
     <>
       <Routes>

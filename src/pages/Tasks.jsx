@@ -1,9 +1,9 @@
 import React from "react";
-
-const Tasks = () => {
+import Task from "../components/tasksComp/Task";
+const Tasks = ({ tasks }) => {
   return (
     <>
-      <h1>Tasks sidan!</h1>
+      <Task tasks={tasks}></Task>
     </>
   );
 };
