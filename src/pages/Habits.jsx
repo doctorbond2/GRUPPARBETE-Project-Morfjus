@@ -14,7 +14,9 @@ const Habits = ({ habits, setHabits }) => {
             habits.map((habitItem, habitItemIndex) => (
               <>
                 <ListGroup.Item>
-                  <Habit {...{ habitItem }} />
+                  <Habit
+                    {...{ habitItem, habits, setHabits, habitItemIndex }}
+                  />
                 </ListGroup.Item>
               </>
             ))}
