@@ -1,6 +1,6 @@
 import React from "react";
 
-const Home = () => {
+const Home = ({ habits, setHabits, friends, setFriends, tasks, setTasks }) => {
   return (
     <>
       <h1>HOMEPAGE Sida!</h1>
