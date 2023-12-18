@@ -9,6 +9,25 @@ import Habits from "./pages/Habits";
 import NewHabit from "./pages/NewHabit";
 import NavbarLayout from "./pages/NavbarLayout";
 
+const defaultHabits = [
+  { title: "Learning guitar", streak: 2, prio: { str: "Low", tier: 1 } },
+  { title: "Reading a book", streak: 7, prio: { str: "High", tier: 3 } },
+  {
+    title: "Daily meditation",
+    streak: 12,
+    prio: { str: "High", tier: 3 },
+  },
+  {
+    title: "Morning jogging",
+    streak: 3,
+    prio: { str: "Medium", tier: 2 },
+  },
+  {
+    title: "Cook a new recipe",
+    streak: 1,
+    prio: { str: "Low", tier: 1 },
+  },
+];
 function App() {
   const dummyTasks = [
     { id: 1, title: "Do dishes", completed: false },
@@ -16,6 +35,7 @@ function App() {
     { id: 3, title: "Walk cat", completed: false },
   ];
   const [tasks, setTasks] = useState(dummyTasks);
+  const [habits, setHabits] = useState(defaultHabits);
   const [friends, setFriends] = useState([
     {
       results: [
@@ -353,8 +373,6 @@ function App() {
       },
     },
   ]);
-  const [habits, setHabits] = useState([]);
-
   return (
     <>
       <Routes>
