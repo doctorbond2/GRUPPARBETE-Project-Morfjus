@@ -1,7 +1,29 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { ListGroup } from "react-bootstrap";
+import Habit from "../components/habitsComp/Habit";
 
-const Habits = () => {
-  return <div>Habits</div>;
+const Habits = ({ habits, setHabits }) => {
+  useEffect(() => {
+    console.log(habits);
+  }, []);
+  return (
+    <>
+      <div>
+        <ListGroup>
+          {habits &&
+            habits.map((habitItem, habitItemIndex) => (
+              <>
+                <ListGroup.Item>
+                  <Habit
+                    {...{ habitItem, habits, setHabits, habitItemIndex }}
+                  />
+                </ListGroup.Item>
+              </>
+            ))}
+        </ListGroup>
+      </div>
+    </>
+  );
 };
 
 export default Habits;
