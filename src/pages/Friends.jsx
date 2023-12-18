@@ -1,10 +1,12 @@
 import React from "react";
+import FriendsList from "../compontents/compFriends/FriendsList";
 
-const Friends = () => {
+const Friends = ({friends, setFriends}) => {
   return (
     <>
-      <h1>Friendspage xD</h1>
-    </>
+      <h1>Friends</h1>
+      <ul>{friends.map((friendsObj, i) => {return(<FriendsList data={friendsObj} key={i}/>)})}</ul>
+      </>
   );
 };
 
