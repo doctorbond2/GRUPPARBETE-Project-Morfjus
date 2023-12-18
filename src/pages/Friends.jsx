@@ -1,5 +1,5 @@
 import React from "react";
-import FriendsList from "../compontents/compFriends/FriendsList";
+import FriendsList from "../components/compFriends/FriendsList";
 
 const Friends = ({friends, setFriends}) => {
   return (
