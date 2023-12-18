@@ -2,7 +2,8 @@ import React from "react";
 import ListGroup from "react-bootstrap/ListGroup";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
-
+import "bootstrap-icons/font/bootstrap-icons.css";
+import Button from "react-bootstrap/Button";
 const Task = ({ task, onMarkAsCompleted }) => {
   const renderTooltip = (message) => (
     <Tooltip id={`tooltip-${task.id}-${message}`}>{message}</Tooltip>
@@ -18,7 +19,13 @@ const Task = ({ task, onMarkAsCompleted }) => {
           delay={{ show: 250, hide: 100 }}
           overlay={renderTooltip("Mark as Completed")}
         >
-          <a onClick={() => onMarkAsCompleted(task.id)}>✔️</a>
+          <Button
+            variant="success"
+            size="sm"
+            onClick={() => onMarkAsCompleted(task.id)}
+          >
+            <i class="bi bi-check2-square"></i>
+          </Button>
         </OverlayTrigger>
       )}
 
@@ -27,7 +34,9 @@ const Task = ({ task, onMarkAsCompleted }) => {
         delay={{ show: 250, hide: 100 }}
         overlay={renderTooltip("Edit")}
       >
-        <button>🖊️</button>
+        <Button variant="warning" size="sm">
+          <i class="bi bi-pencil-square"></i>
+        </Button>
       </OverlayTrigger>
 
       <OverlayTrigger
@@ -35,7 +44,9 @@ const Task = ({ task, onMarkAsCompleted }) => {
         delay={{ show: 250, hide: 100 }}
         overlay={renderTooltip("Delete")}
       >
-        <button>❌</button>
+        <Button variant="danger" size="sm">
+          <i class="bi bi-trash"></i>
+        </Button>
       </OverlayTrigger>
     </ListGroup.Item>
   );
