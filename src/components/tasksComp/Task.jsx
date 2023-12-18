@@ -2,11 +2,8 @@ import React from "react";
 import ListGroup from "react-bootstrap/ListGroup";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 
-const Task = ({ task }) => {
+const Task = ({ task, onMarkAsCompleted }) => {
   const renderTooltip = (message) => (
     <Tooltip id={`tooltip-${task.id}-${message}`}>{message}</Tooltip>
   );
@@ -18,16 +15,16 @@ const Task = ({ task }) => {
       {!task.completed && (
         <OverlayTrigger
           placement="top"
-          delay={{ show: 250, hide: 400 }}
+          delay={{ show: 250, hide: 100 }}
           overlay={renderTooltip("Mark as Completed")}
         >
-          <button>✔️</button>
+          <a onClick={() => onMarkAsCompleted(task.id)}>✔️</a>
         </OverlayTrigger>
       )}
 
       <OverlayTrigger
         placement="top"
-        delay={{ show: 250, hide: 400 }}
+        delay={{ show: 250, hide: 100 }}
         overlay={renderTooltip("Edit")}
       >
         <button>🖊️</button>
@@ -35,7 +32,7 @@ const Task = ({ task }) => {
 
       <OverlayTrigger
         placement="top"
-        delay={{ show: 250, hide: 400 }}
+        delay={{ show: 250, hide: 100 }}
         overlay={renderTooltip("Delete")}
       >
         <button>❌</button>
