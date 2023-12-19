@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { ListGroup } from "react-bootstrap";
+import { ListGroup, Dropdown } from "react-bootstrap";
 import Habit from "../components/habitsComp/Habit";
 
 const Habits = ({ habits, setHabits }) => {
@@ -9,6 +9,25 @@ const Habits = ({ habits, setHabits }) => {
   return (
     <>
       <div>
+        <Dropdown>
+          <Dropdown.Toggle
+            variant="tertiary"
+            id="dropdown-basic"
+            style={{
+              border: "1px solid black",
+              right: "0",
+              marginLeft: "90vw",
+            }}
+          >
+            Dropdown Button
+          </Dropdown.Toggle>
+
+          <Dropdown.Menu>
+            <Dropdown.Item>High Priority</Dropdown.Item>
+            <Dropdown.Item>Medium Priority</Dropdown.Item>
+            <Dropdown.Item>Low Priority</Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
         <ListGroup>
           {habits &&
             habits.map((habitItem, habitItemIndex) => (

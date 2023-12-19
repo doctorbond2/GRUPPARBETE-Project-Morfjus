@@ -57,7 +57,13 @@ const Habit = ({ habitItem, habits, setHabits, habitItemIndex }) => {
           <h2>{title}</h2>
         </Card.Header>
         <Card.Body>
-          <h5>Activity Streak: {streak} Days in a row</h5>
+          <h5>
+            Activity Streak:{" "}
+            <small className={streak > 5 ? "habits-activity-streak-color" : ""}>
+              {streak}
+            </small>
+            {""} Days in a row
+          </h5>
           <Button
             onClick={(e) => {
               handleActiveStreak(e);

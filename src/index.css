@@ -1,4 +1,8 @@
 @charset "UTF-8";
+.habits-activity-streak-color {
+  color: red;
+}
+
 * {
   padding: 0;
   margin: 0;
