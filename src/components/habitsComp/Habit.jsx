@@ -6,6 +6,7 @@ const Habit = ({
   sortedHabits,
   setSortedHabits,
   habitItemIndex,
+  setHabits,
 }) => {
   const {
     streak,
@@ -23,7 +24,7 @@ const Habit = ({
           return x;
         });
         setSortedHabits(updatedHabits);
-        console.log(sortedHabits);
+        setHabits(updatedHabits);
         break;
       }
       case "dec": {
@@ -35,7 +36,7 @@ const Habit = ({
             return x;
           });
           setSortedHabits(updatedHabits);
-          console.log(sortedHabits);
+          setHabits(updatedHabits);
         }
         break;
       }
@@ -49,7 +50,7 @@ const Habit = ({
               return x;
             });
             setSortedHabits(updatedHabits);
-            console.log(sortedHabits);
+            setHabits(updatedHabits);
           }
         }
         break;
