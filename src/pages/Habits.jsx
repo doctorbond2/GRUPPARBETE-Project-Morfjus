@@ -1,11 +1,43 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState, useReducer } from "react";
 import { ListGroup, Dropdown } from "react-bootstrap";
 import Habit from "../components/habitsComp/Habit";
 
 const Habits = ({ habits, setHabits }) => {
+  const [sortedHabits, setSortedHabits] = useState(habits);
+
   useEffect(() => {
     console.log(habits);
+    setSortedHabits(habits);
   }, []);
+  const dropDownSelectOptions = [
+    { value: "High", label: "Highest Priority" },
+    { value: "Low", label: "Lowest Priority" },
+    { value: "highstreak", label: "Longest streak" },
+    {
+      value: "lowstreak",
+      label: "Shortest streak",
+    },
+  ];
+
+  const handleSelectPriority = (prio) => {
+    let newSortedHabits = [...habits];
+    switch (prio) {
+      case "High": {
+        newSortedHabits.sort((x, y) => {
+          return y.prio.tier - x.prio.tier;
+        }, 0);
+        setSortedHabits(newSortedHabits);
+        break;
+      }
+      case "Low": {
+        newSortedHabits.sort((x, y) => {
+          return x.prio.tier - y.prio.tier;
+        }, 0);
+        setSortedHabits(newSortedHabits);
+        break;
+      }
+    }
+  };
   return (
     <>
       <div>
@@ -19,22 +51,35 @@ const Habits = ({ habits, setHabits }) => {
               marginLeft: "90vw",
             }}
           >
-            Dropdown Button
+            Priority
           </Dropdown.Toggle>
 
           <Dropdown.Menu>
-            <Dropdown.Item>High Priority</Dropdown.Item>
-            <Dropdown.Item>Medium Priority</Dropdown.Item>
-            <Dropdown.Item>Low Priority</Dropdown.Item>
+            {dropDownSelectOptions.map((x, i) => (
+              <Dropdown.Item
+                onClick={() => {
+                  handleSelectPriority(x.value);
+                }}
+                value={x.value}
+              >
+                {x.label}
+              </Dropdown.Item>
+            ))}
           </Dropdown.Menu>
         </Dropdown>
+
         <ListGroup>
           {habits &&
-            habits.map((habitItem, habitItemIndex) => (
+            sortedHabits.map((habitItem, habitItemIndex) => (
               <>
                 <ListGroup.Item>
                   <Habit
-                    {...{ habitItem, habits, setHabits, habitItemIndex }}
+                    {...{
+                      habitItem,
+                      sortedHabits,
+                      setSortedHabits,
+                      habitItemIndex,
+                    }}
                   />
                 </ListGroup.Item>
               </>

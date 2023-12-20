@@ -1,7 +1,12 @@
 import React from "react";
 import { Card, Button } from "react-bootstrap";
 
-const Habit = ({ habitItem, habits, setHabits, habitItemIndex }) => {
+const Habit = ({
+  habitItem,
+  sortedHabits,
+  setSortedHabits,
+  habitItemIndex,
+}) => {
   const {
     streak,
     title,
@@ -11,40 +16,40 @@ const Habit = ({ habitItem, habits, setHabits, habitItemIndex }) => {
     let updatedHabits = "";
     switch (e.target.value) {
       case "inc": {
-        updatedHabits = habits.map((x, i) => {
+        updatedHabits = sortedHabits.map((x, i) => {
           if (habitItemIndex === i) {
             return { ...x, streak: x.streak + 1 };
           }
           return x;
         });
-        setHabits(updatedHabits);
-        console.log(habits);
+        setSortedHabits(updatedHabits);
+        console.log(sortedHabits);
         break;
       }
       case "dec": {
         if (streak !== 0) {
-          updatedHabits = habits.map((x, i) => {
+          updatedHabits = sortedHabits.map((x, i) => {
             if (habitItemIndex === i) {
               return { ...x, streak: x.streak - 1 };
             }
             return x;
           });
-          setHabits(updatedHabits);
-          console.log(habits);
+          setSortedHabits(updatedHabits);
+          console.log(sortedHabits);
         }
         break;
       }
       case "reset":
         {
           if (streak !== 0) {
-            updatedHabits = habits.map((x, i) => {
+            updatedHabits = sortedHabits.map((x, i) => {
               if (habitItemIndex === i) {
                 return { ...x, streak: 0 };
               }
               return x;
             });
-            setHabits(updatedHabits);
-            console.log(habits);
+            setSortedHabits(updatedHabits);
+            console.log(sortedHabits);
           }
         }
         break;
