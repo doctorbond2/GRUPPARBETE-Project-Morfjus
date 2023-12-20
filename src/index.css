@@ -1,6 +1,6 @@
 @charset "UTF-8";
-a {
-  cursor: pointer;
+.habits-activity-streak-color {
+  color: red;
 }
 
 * {
