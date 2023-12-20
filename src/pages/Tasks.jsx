@@ -2,10 +2,16 @@ import React from "react";
 import Task from "../components/tasksComp/Task";
 import { Row, Col, Button, ListGroup, Container } from "react-bootstrap";
 import "../index.css";
+import { useNavigate } from 'react-router-dom';
 
 const Tasks = ({ tasks, setTasks }) => {
   const completedTasks = tasks.filter((task) => task.completed);
   const unCompletedTasks = tasks.filter((task) => !task.completed);
+  const navigate = useNavigate();
+
+  const handleCreateNewTask = () => {
+    navigate('/NewTask');
+  };
 
   const removeTask = (taskId) => {
     const updatedTasks = tasks.filter((task) => task.id !== taskId);
@@ -48,7 +54,7 @@ const Tasks = ({ tasks, setTasks }) => {
               />
             ))}
           </ListGroup>
-          <Button>Create a new task</Button>
+          <Button onClick={handleCreateNewTask}>Create a new task</Button>
         </Col>
         <Col>
           <h2>Completed Tasks</h2>
