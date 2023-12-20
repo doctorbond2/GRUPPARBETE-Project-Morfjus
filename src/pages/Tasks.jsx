@@ -1,13 +1,26 @@
 import React from "react";
 import Task from "../components/tasksComp/Task";
-import ListGroup from "react-bootstrap/ListGroup";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
+import { Row, Col, Button, ListGroup, Container } from "react-bootstrap";
+import "../index.css";
 
 const Tasks = ({ tasks, setTasks }) => {
   const completedTasks = tasks.filter((task) => task.completed);
   const unCompletedTasks = tasks.filter((task) => !task.completed);
+
+  const removeTask = (taskId) => {
+    const updatedTasks = tasks.filter((task) => task.id !== taskId);
+    setTasks(updatedTasks);
+  };
+
+  const saveEdit = (taskId, newTitle) => {
+    const updatedTasks = tasks.map((task) => {
+      if (task.id === taskId) {
+        return { ...task, title: newTitle };
+      }
+      return task;
+    });
+    setTasks(updatedTasks);
+  };
 
   const markAsCompleted = (taskId) => {
     const updatedTasks = tasks.map((task) => {
@@ -30,9 +43,12 @@ const Tasks = ({ tasks, setTasks }) => {
                 key={task.id}
                 task={task}
                 onMarkAsCompleted={markAsCompleted}
+                onSaveEdit={saveEdit}
+                onRemoveTask={removeTask}
               />
             ))}
           </ListGroup>
+          <Button>Create a new task</Button>
         </Col>
         <Col>
           <h2>Completed Tasks</h2>
@@ -42,6 +58,8 @@ const Tasks = ({ tasks, setTasks }) => {
                 key={task.id}
                 task={task}
                 onMarkAsCompleted={markAsCompleted}
+                onSaveEdit={saveEdit}
+                onRemoveTask={removeTask}
               />
             ))}
           </ListGroup>
