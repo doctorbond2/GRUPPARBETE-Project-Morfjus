@@ -10,7 +10,7 @@ const FriendsList = ({ data }) => {
 
   return (
     <>
-      <Card style={{ width: "18rem" }}>
+      <Card className="d-inline-flex m-2" style={{ width: "18rem" }}>
         <Card.Img variant="top" src={person.picture.large} />
         <Card.Body>
           <Card.Title>

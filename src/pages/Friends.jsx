@@ -35,64 +35,66 @@ const Friends = ({ friends, setFriends }) => {
   };
   return (
     <div>
-      <h1>Friends</h1>
-      <Button
-        onClick={() => {
-          handleAdd();
-        }}
-      >
-        Add A Friend
-      </Button>
-      <Dropdown>
-        <Dropdown.Toggle>Sort By Age</Dropdown.Toggle>
-        <Dropdown.Menu>
-          <Dropdown.Item
-            onClick={() => {
-              handleSortAge("high");
-            }}
-          >
-            High to Low
-          </Dropdown.Item>
-          <Dropdown.Item
-            onClick={() => {
-              handleSortAge("low");
-            }}
-          >
-            Low to High
-          </Dropdown.Item>
-        </Dropdown.Menu>
-      </Dropdown>
+      <h1 className="d-flex justify-content-around p-4">My Friends</h1>
+      <div className="d-flex justify-content-around">
+        <Button
+          onClick={() => {
+            handleAdd();
+          }}
+        >
+          Add A Friend
+        </Button>
+        <Dropdown>
+          <Dropdown.Toggle>Sort By Age</Dropdown.Toggle>
+          <Dropdown.Menu>
+            <Dropdown.Item
+              onClick={() => {
+                handleSortAge("high");
+              }}
+            >
+              High to Low
+            </Dropdown.Item>
+            <Dropdown.Item
+              onClick={() => {
+                handleSortAge("low");
+              }}
+            >
+              Low to High
+            </Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
 
-      <Dropdown>
-        <Dropdown.Toggle>Filter By Gender</Dropdown.Toggle>
-        <Dropdown.Menu title="Sort By Gender">
-          {" "}
-          <Dropdown.Item
-            onClick={() => {
-              setSelectedGender("all");
-              handleFilter("all");
-            }}
-          >
-            All
-          </Dropdown.Item>
-          <Dropdown.Item
-            onClick={() => {
-              setSelectedGender("male");
-              handleFilter("male");
-            }}
-          >
-            Male
-          </Dropdown.Item>
-          <Dropdown.Item
-            onClick={() => {
-              setSelectedGender("female");
-              handleFilter("female");
-            }}
-          >
-            Female
-          </Dropdown.Item>
-        </Dropdown.Menu>
-      </Dropdown>
+        <Dropdown>
+          <Dropdown.Toggle>Filter By Gender</Dropdown.Toggle>
+          <Dropdown.Menu title="Sort By Gender">
+            {" "}
+            <Dropdown.Item
+              onClick={() => {
+                setSelectedGender("all");
+                handleFilter("all");
+              }}
+            >
+              All
+            </Dropdown.Item>
+            <Dropdown.Item
+              onClick={() => {
+                setSelectedGender("male");
+                handleFilter("male");
+              }}
+            >
+              Male
+            </Dropdown.Item>
+            <Dropdown.Item
+              onClick={() => {
+                setSelectedGender("female");
+                handleFilter("female");
+              }}
+            >
+              Female
+            </Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
+      </div>
       <ul>
         {filteredFriends.map((friendsObj, i) => {
           return <FriendsList data={friendsObj} key={i} />;
