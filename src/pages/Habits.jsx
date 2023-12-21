@@ -1,9 +1,12 @@
 import React, { useEffect, useState, useReducer } from "react";
-import { ListGroup, Dropdown } from "react-bootstrap";
+import { ListGroup, Dropdown, Button } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import Habit from "../components/habitsComp/Habit";
 
 const Habits = ({ habits, setHabits }) => {
   const [sortedHabits, setSortedHabits] = useState(habits);
+  const navigate = useNavigate();
+
   useEffect(() => {
     console.log(habits);
   }, []);
@@ -78,7 +81,15 @@ const Habits = ({ habits, setHabits }) => {
   };
   return (
     <>
+      <div className="habits-asdasd">ASDASDDSADS</div>
       <div>
+        <Button
+          onClick={() => {
+            navigate("/newHabit");
+          }}
+        >
+          Add new habit
+        </Button>
         <div style={{ display: "flex", justifyContent: "end" }}>
           <Dropdown>
             <Dropdown.Toggle
