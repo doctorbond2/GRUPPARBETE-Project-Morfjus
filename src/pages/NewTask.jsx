@@ -23,7 +23,7 @@ const NewTask = ({}) => {
       <Form>
         <Form.Group className="mb-3">
           <Form.Label>Title</Form.Label>
-          <Button  variant="outline-dark" size="sm">
+          <Button variant="outline-dark" size="sm">
             <i class="bi bi-dice-6-fill"></i>
           </Button>
           <Form.Control placeholder="Task title" />
