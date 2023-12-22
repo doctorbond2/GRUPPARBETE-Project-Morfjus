@@ -20,8 +20,8 @@ const Home = ({ habits, setHabits, friends, setFriends, tasks, setTasks }) => {
                 })
                 .slice(-5)}
             </div>
-            <Link color="$primary" className="friendsLink" to="/friends">
-              <h3 className="friendsLink compColor textColor d-flex justify-content-center m-2">
+            <Link color="$primary" className="friends-link" to="/friends">
+              <h3 className="friends-link text-color d-flex justify-content-center m-2">
                 All Friends
               </h3>
             </Link>
