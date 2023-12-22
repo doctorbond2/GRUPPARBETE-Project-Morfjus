@@ -8,14 +8,18 @@ const Friends = ({ friends, setFriends }) => {
   const [selectedGender, setSelectedGender] = useState("all");
 
   const handleAdd = async () => {
-    let response = await fetch("https://randomuser.me/api");
-    let json = await response.json();
-    let updatedFriends = [...friends, json];
-    setFriends(updatedFriends);
-    handleFilter(selectedGender);
+    try {
+      let response = await fetch("https://randomuser.me/api");
+      let json = await response.json();
+      let updatedFriends = [...friends, json];
+      await setFriends(updatedFriends);
+      await handleFilter(selectedGender, updatedFriends);
+    } catch (error) {
+      alert("Error Adding Friend", error);
+    }
   };
 
-  const handleFilter = (gender) => {
+  const handleFilter = (gender, friends) => {
     let updatedFilteredFriends = [...friends];
     gender === "all"
       ? (updatedFilteredFriends = [...friends])

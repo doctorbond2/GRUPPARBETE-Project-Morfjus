@@ -20,35 +20,44 @@ function App() {
   const [friends, setFriends] = useState(initialFriends);
   return (
     <>
-      <Routes>
-        <Route element={<NavbarLayout />}>
-          <Route
-            path="/"
-            element={
-              <Home
-                {...{ tasks, setTasks, friends, setFriends, habits, setHabits }}
-              />
-            }
-          />
-          <Route path="/tasks" element={<Tasks {...{ tasks, setTasks }} />} />
-          <Route
-            path="/newTask"
-            element={<NewTask {...{ tasks, setTasks }} />}
-          />
-          <Route
-            path="/habits"
-            element={<Habits {...{ habits, setHabits }} />}
-          />
-          <Route
-            path="/newHabit"
-            element={<NewHabit {...{ habits, setHabits }} />}
-          />
-          <Route
-            path="/friends"
-            element={<Friends {...{ friends, setFriends }} />}
-          />
-        </Route>
-      </Routes>
+      <div className="bg-color">
+        <Routes>
+          <Route element={<NavbarLayout />}>
+            <Route
+              path="/"
+              element={
+                <Home
+                  {...{
+                    tasks,
+                    setTasks,
+                    friends,
+                    setFriends,
+                    habits,
+                    setHabits,
+                  }}
+                />
+              }
+            />
+            <Route path="/tasks" element={<Tasks {...{ tasks, setTasks }} />} />
+            <Route
+              path="/newTask"
+              element={<NewTask {...{ tasks, setTasks }} />}
+            />
+            <Route
+              path="/habits"
+              element={<Habits {...{ habits, setHabits }} />}
+            />
+            <Route
+              path="/newHabit"
+              element={<NewHabit {...{ habits, setHabits }} />}
+            />
+            <Route
+              path="/friends"
+              element={<Friends {...{ friends, setFriends }} />}
+            />
+          </Route>
+        </Routes>
+      </div>
     </>
   );
 }

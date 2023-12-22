@@ -8,8 +8,8 @@ const FriendsHome = ({ data }) => {
 
   return (
     <>
-      <li className="friendLi compColor textColor">
-        <img className="thumbnailPic" src={person.picture.thumbnail} />
+      <li className="friend-li comp-color text-color">
+        <img className="thumbnail-pic" src={person.picture.thumbnail} />
         {person.name.title} {person.name.first} {person.name.last}
       </li>
     </>

@@ -8,22 +8,21 @@
   box-sizing: border-box;
 }
 
-$primary: #e6eff5;
+$primary: #D7E8F7;
 $secondary: #b0bfcc;
 
-.textColor {
+.text-color {
   color: #000000;
 }
 
-.compColor {
+.comp-color {
   background-color: $primary;
   border: solid 1px $secondary;
 }
 
-#root {
+html, .bg-color {
   background-color: whitesmoke;
   height: 100vh;
-  
 }
 
 
