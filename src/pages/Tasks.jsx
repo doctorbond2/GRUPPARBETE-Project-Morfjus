@@ -53,7 +53,6 @@ const Tasks = ({ tasks, setTasks }) => {
 
   return (
     <Container>
-      {/* Place the button in its own row at the top, aligned to the right */}
       <Row className="justify-content-end">
         <Col md="auto">
           <Button variant="primary" onClick={handleShow}>
@@ -62,7 +61,11 @@ const Tasks = ({ tasks, setTasks }) => {
         </Col>
       </Row>
       <Row>
-        <Offcanvas show={show} onHide={handleClose}>
+        <Offcanvas
+          style={{ backgroundColor: "#b0bfcc" }}
+          show={show}
+          onHide={handleClose}
+        >
           <Offcanvas.Header closeButton>
             <Offcanvas.Title>Filter & sort</Offcanvas.Title>
           </Offcanvas.Header>
@@ -72,11 +75,11 @@ const Tasks = ({ tasks, setTasks }) => {
               <Dropdown.Toggle
                 style={{
                   width: "366px",
-                  backgroundColor: "white",
+                  backgroundColor: "#D7E8F7",
                   color: "black",
-                  fontWeight: "bold",
+                  border: "0px",
                 }}
-                variant="success"
+                variant="dark"
                 id="dropdown-basic"
               >
                 Sort by A-Z
@@ -92,11 +95,11 @@ const Tasks = ({ tasks, setTasks }) => {
               <Dropdown.Toggle
                 style={{
                   width: "366px",
-                  backgroundColor: "white",
+                  backgroundColor: "#D7E8F7",
                   color: "black",
-                  fontWeight: "bold",
+                  border: "0px",
                 }}
-                variant="success"
+                variant="dark"
                 id="dropdown-basic"
               >
                 Sort by time
@@ -112,11 +115,11 @@ const Tasks = ({ tasks, setTasks }) => {
               <Dropdown.Toggle
                 style={{
                   width: "366px",
-                  backgroundColor: "white",
+                  backgroundColor: "#D7E8F7",
                   color: "black",
-                  fontWeight: "bold",
+                  border: "0px",
                 }}
-                variant="success"
+                variant="dark"
                 id="dropdown-basic"
               >
                 Sort by category
