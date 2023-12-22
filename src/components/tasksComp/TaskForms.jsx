@@ -6,6 +6,19 @@ const TaskForms = ({ handleTimeChange, formatTime, minutes, addTask }) => {
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("Busywork");
 
+  const fetchTaskData = async () => {
+    try {
+      const response = await fetch("https://www.boredapi.com/api/activity");
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      const data = await response.json();
+      setTitle(data.activity);
+    } catch (error) {
+      console.error("Error fetching data: ", error);
+    }
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const newTask = {
@@ -26,7 +39,7 @@ const TaskForms = ({ handleTimeChange, formatTime, minutes, addTask }) => {
     <Form onSubmit={handleSubmit}>
       <Form.Group className="mb-3">
         <Form.Label>Title</Form.Label>
-        <Button variant="outline-dark" size="sm">
+        <Button onClick={fetchTaskData} variant="outline-dark" size="sm">
           <i className="bi bi-dice-6-fill"></i>
         </Button>
         <Form.Control

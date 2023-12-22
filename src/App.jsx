@@ -1,7 +1,15 @@
 import { useState, useEffect } from "react";
 import "./App.css";
 import { Routes, Route } from "react-router";
-import { Friends, Tasks, NewTask, Home, Habits, NewHabit, NavbarLayout } from './pages';
+import {
+  Friends,
+  Tasks,
+  NewTask,
+  Home,
+  Habits,
+  NewHabit,
+  NavbarLayout,
+} from "./pages";
 import initialTasks from "./mockData/initialTasks";
 
 const defaultHabits = [
