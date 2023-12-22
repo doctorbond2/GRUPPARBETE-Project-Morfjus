@@ -27,15 +27,15 @@ const Home = ({ habits, setHabits, friends, setFriends, tasks, setTasks }) => {
             </Link>
           </Col>
           <Col>
-            <h2>Habits</h2>
-            <div className="d-flex h-50" style={{ border: "1px solid red" }}>
+            <h2 className="m-3">Habits</h2>
+            <div className="d-flex h-50">
               {habits &&
                 habits
                   .map((habit, i) => <HomeHabitsCard {...{ habit }} />)
                   .slice(-3)}
             </div>
-            <h2>Tasks</h2>
-            <div className="d-flex h-50" style={{ border: "1px solid red" }}>
+            <h2 className="m-3">Tasks</h2>
+            <div className="d-flex h-50">
               {tasks &&
                 tasks.map((task) => <HomeTaskCard {...{ task }} />).slice(-3)}
             </div>

@@ -6,11 +6,11 @@ const HomeHabitsCard = ({ habit }) => {
   // prio: { str: "High", tier: 3 },
   return (
     <>
-      <Card>
+      <Card className="h-50">
         <Card.Header>
           <h2>{habit.title}</h2>
         </Card.Header>
-        <Card.Body>
+        <Card.Body className="home-cards-body">
           {" "}
           <h2>{habit.streak}</h2>
         </Card.Body>
