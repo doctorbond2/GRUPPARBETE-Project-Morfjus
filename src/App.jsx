@@ -20,7 +20,7 @@ function App() {
   const [friends, setFriends] = useState(initialFriends);
   return (
     <>
-      <div className="bg-color">
+      <div className="bg-color pb-3">
         <Routes>
           <Route element={<NavbarLayout />}>
             <Route
