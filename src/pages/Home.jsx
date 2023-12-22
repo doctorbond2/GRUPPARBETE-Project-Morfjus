@@ -6,18 +6,22 @@ const Home = ({ habits, setHabits, friends, setFriends, tasks, setTasks }) => {
   return (
     <>
       <Container className="container-fluid">
-        <Row style={{ minHeight: "100vh", backgroundColor: "lightgray" }}>
-          <Col className="col-3" style={{ border: "1px solid black" }}>
+        <Row style={{ minHeight: "100vh" }}>
+          <Col className="col-3">
             <h2 className="d-flex justify-content-center m-3">
-              Your Top Friends
+              Latest 5 Friends
             </h2>
             <div>
-              {friends.map((friendsObj, i) => {
-                return <FriendsHome data={friendsObj} key={i} />;
-              })}
+              {friends
+                .map((friendsObj, i) => {
+                  return <FriendsHome data={friendsObj} key={i} />;
+                })
+                .slice(-5)}
             </div>
-            <Link to="/friends">
-              <h3 className="d-flex justify-content-center m-2">All Friends</h3>
+            <Link color="$primary" className="friendsLink" to="/friends">
+              <h3 className="friendsLink compColor textColor d-flex justify-content-center m-2">
+                All Friends
+              </h3>
             </Link>
           </Col>
           <Col>

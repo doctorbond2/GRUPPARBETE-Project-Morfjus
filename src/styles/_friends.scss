@@ -9,8 +9,12 @@ a {
 
 .friendLi {
   list-style: none;
-  background-color: white;
   margin-bottom: 1rem;
   padding: 0.5rem;
+  border-radius: 1rem;
+}
+
+.friendsLink {
+  text-decoration: none;
   border-radius: 1rem;
 }

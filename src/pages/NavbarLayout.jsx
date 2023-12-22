@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 const NavbarLayout = () => {
   return (
     <>
-      <Navbar expand="lg" className="bg-body-tertiary">
+      <Navbar expand="lg" className="compColor">
         <Container>
           <Navbar.Brand as={Link} to="/">
             <img src="public/logo.png" style={{ maxWidth: "75px" }}></img>

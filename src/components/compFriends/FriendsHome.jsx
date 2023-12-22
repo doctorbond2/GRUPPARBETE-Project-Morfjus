@@ -8,7 +8,7 @@ const FriendsHome = ({ data }) => {
 
   return (
     <>
-      <li className="friendLi">
+      <li className="friendLi compColor textColor">
         <img className="thumbnailPic" src={person.picture.thumbnail} />
         {person.name.title} {person.name.first} {person.name.last}
       </li>
