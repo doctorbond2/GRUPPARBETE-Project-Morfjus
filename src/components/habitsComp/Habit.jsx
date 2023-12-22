@@ -58,7 +58,7 @@ const Habit = ({
   };
   return (
     <>
-      <Card className="w-50">
+      <Card>
         <Card.Header>
           <h2>{title}</h2>
         </Card.Header>
