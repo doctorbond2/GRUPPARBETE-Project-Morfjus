@@ -136,35 +136,6 @@ const Tasks = ({ tasks, setTasks }) => {
             </Dropdown>
           </Offcanvas.Body>
         </Offcanvas>
-        <Col>
-          <h2>Uncompleted Tasks</h2>
-          <ListGroup className="p-2 ms-auto">
-            {unCompletedTasks.map((task) => (
-              <Task
-                key={task.id}
-                task={task}
-                onMarkAsCompleted={markAsCompleted}
-                onSaveEdit={saveEdit}
-                onRemoveTask={removeTask}
-              />
-            ))}
-          </ListGroup>
-          <Button onClick={handleCreateNewTask}>Create a new task</Button>
-        </Col>
-        <Col>
-          <h2>Completed Tasks</h2>
-          <ListGroup className="p-2 ms-auto">
-            {completedTasks.map((task) => (
-              <Task
-                key={task.id}
-                task={task}
-                onMarkAsCompleted={markAsCompleted}
-                onSaveEdit={saveEdit}
-                onRemoveTask={removeTask}
-              />
-            ))}
-          </ListGroup>
-        </Col>
       </Row>
     </Container>
   );

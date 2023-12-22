@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Button } from "react-bootstrap";
+import { Card, Button, Row, Col, ProgressBar } from "react-bootstrap";
 
 const Habit = ({
   habitItem,
@@ -60,41 +60,72 @@ const Habit = ({
     <>
       <Card>
         <Card.Header>
-          <h2>{title}</h2>
+          <h3>{title}</h3>
         </Card.Header>
         <Card.Body>
-          <h5>
-            Activity Streak:{" "}
-            <small className={streak > 5 ? "habits-activity-streak-color" : ""}>
-              {streak}
-            </small>
-            {""} Days in a row
-          </h5>
-          <Button
-            onClick={(e) => {
-              handleActiveStreak(e);
-            }}
-            variant={"success"}
-            value="inc"
-            className="bi bi-arrow-up"
-          ></Button>
-          <Button
-            onClick={(e) => {
-              handleActiveStreak(e);
-            }}
-            variant={"warning"}
-            value="dec"
-            className="bi bi-arrow-down"
-          ></Button>
-          <Button
-            onClick={(e) => {
-              handleActiveStreak(e);
-            }}
-            value="reset"
-          >
-            Start over
-          </Button>
-          <h6>Priority: {str}</h6>
+          <Row>
+            <Col>
+              <h5>
+                Activity Streak:{" "}
+                <small
+                  className={streak > 5 ? "habits-activity-streak-color" : ""}
+                >
+                  {streak}
+                </small>
+                {""} Days in a row
+              </h5>
+
+              <h6>Priority: {str}</h6>
+              <Row className="d-flex align-items-center justify-content-center">
+                <Col className="col-1">
+                  <h5>0</h5>
+                </Col>
+                <Col>
+                  <ProgressBar
+                    now={streak}
+                    max={365}
+                    variant="success"
+                    style={{ backgroundColor: "lightblue" }}
+                    animated
+                  />
+                </Col>
+                <Col className="col-2">
+                  {" "}
+                  <h5>365</h5>
+                </Col>
+              </Row>
+            </Col>
+            <Col className=" col-2">
+              <div className="d-flex flex-column">
+                <Button
+                  size="sm"
+                  onClick={(e) => {
+                    handleActiveStreak(e);
+                  }}
+                  variant={"success"}
+                  value="inc"
+                  className="bi bi-arrow-up"
+                ></Button>
+                <Button
+                  onClick={(e) => {
+                    handleActiveStreak(e);
+                  }}
+                  variant={"warning"}
+                  value="dec"
+                  className="bi bi-arrow-down"
+                ></Button>
+                <Button
+                  size="sm"
+                  onClick={(e) => {
+                    handleActiveStreak(e);
+                  }}
+                  value="reset"
+                >
+                  Start over
+                </Button>
+              </div>
+            </Col>
+          </Row>
         </Card.Body>
       </Card>
     </>
