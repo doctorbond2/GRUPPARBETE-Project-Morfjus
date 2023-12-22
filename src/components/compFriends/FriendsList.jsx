@@ -10,13 +10,13 @@ const FriendsList = ({ data }) => {
 
   return (
     <>
-      <Card className="d-inline-flex m-2 compColor" style={{ width: "18rem" }}>
+      <Card className="d-inline-flex m-2 comp-color" style={{ width: "18rem" }}>
         <Card.Img
-          className="compColor"
+          className="comp-color"
           variant="top"
           src={person.picture.large}
         />
-        <Card.Body className="compColor">
+        <Card.Body>
           <Card.Title>
             {person.name.title} {person.name.first} {person.name.last}
           </Card.Title>
