@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import FriendsList from "../components/compFriends/FriendsList";
-import { Button, Dropdown } from "react-bootstrap";
+import { Button, Dropdown, Offcanvas } from "react-bootstrap";
 
 const Friends = ({ friends, setFriends }) => {
   const [filteredFriends, setFilteredFriends] = useState(friends);
@@ -37,6 +37,12 @@ const Friends = ({ friends, setFriends }) => {
     });
     setFilteredFriends(sortedFriends);
   };
+
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   return (
     <div>
       <h1 className="d-flex justify-content-around p-4">My Friends</h1>
@@ -48,56 +54,91 @@ const Friends = ({ friends, setFriends }) => {
         >
           Add A Friend
         </Button>
-        <Dropdown>
-          <Dropdown.Toggle>Sort By Age</Dropdown.Toggle>
-          <Dropdown.Menu>
-            <Dropdown.Item
-              onClick={() => {
-                handleSortAge("high");
-              }}
-            >
-              High to Low
-            </Dropdown.Item>
-            <Dropdown.Item
-              onClick={() => {
-                handleSortAge("low");
-              }}
-            >
-              Low to High
-            </Dropdown.Item>
-          </Dropdown.Menu>
-        </Dropdown>
-
-        <Dropdown>
-          <Dropdown.Toggle>Filter By Gender</Dropdown.Toggle>
-          <Dropdown.Menu title="Sort By Gender">
-            {" "}
-            <Dropdown.Item
-              onClick={() => {
-                setSelectedGender("all");
-                handleFilter("all");
-              }}
-            >
-              All
-            </Dropdown.Item>
-            <Dropdown.Item
-              onClick={() => {
-                setSelectedGender("male");
-                handleFilter("male");
-              }}
-            >
-              Male
-            </Dropdown.Item>
-            <Dropdown.Item
-              onClick={() => {
-                setSelectedGender("female");
-                handleFilter("female");
-              }}
-            >
-              Female
-            </Dropdown.Item>
-          </Dropdown.Menu>
-        </Dropdown>
+        <Button variant="primary" onClick={handleShow}>
+          Filter results <i className="bi bi-filter-right"></i>
+        </Button>
+        <Offcanvas
+          style={{ backgroundColor: "#b0bfcc" }}
+          show={show}
+          onHide={handleClose}
+        >
+          <Offcanvas.Header closeButton>
+            <Offcanvas.Title>Filter & sort</Offcanvas.Title>
+          </Offcanvas.Header>
+          <Offcanvas.Body>
+            <Dropdown className="mb-3">
+              <Dropdown.Toggle
+                style={{
+                  width: "366px",
+                  backgroundColor: "#D7E8F7",
+                  color: "black",
+                  border: "0px",
+                }}
+                variant="dark"
+                id="dropdown-basic"
+              >
+                Sort By Age
+              </Dropdown.Toggle>
+              <Dropdown.Menu style={{ width: "366px", textAlign: "center" }}>
+                <Dropdown.Item
+                  onClick={() => {
+                    handleSortAge("high");
+                  }}
+                >
+                  High to Low
+                </Dropdown.Item>
+                <Dropdown.Item
+                  onClick={() => {
+                    handleSortAge("low");
+                  }}
+                >
+                  Low to High
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+            <Dropdown className="mb-3">
+              <Dropdown.Toggle
+                style={{
+                  width: "366px",
+                  backgroundColor: "#D7E8F7",
+                  color: "black",
+                  border: "0px",
+                }}
+                variant="dark"
+                id="dropdown-basic"
+              >
+                Filter By Gender
+              </Dropdown.Toggle>
+              <Dropdown.Menu style={{ width: "366px", textAlign: "center" }} title="Sort By Gender">
+                {" "}
+                <Dropdown.Item
+                  onClick={() => {
+                    setSelectedGender("all");
+                    handleFilter("all");
+                  }}
+                >
+                  All
+                </Dropdown.Item>
+                <Dropdown.Item
+                  onClick={() => {
+                    setSelectedGender("male");
+                    handleFilter("male");
+                  }}
+                >
+                  Male
+                </Dropdown.Item>
+                <Dropdown.Item
+                  onClick={() => {
+                    setSelectedGender("female");
+                    handleFilter("female");
+                  }}
+                >
+                  Female
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+          </Offcanvas.Body>
+        </Offcanvas>
       </div>
       <ul>
         {filteredFriends.map((friendsObj, i) => {
