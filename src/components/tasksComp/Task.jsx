@@ -24,6 +24,15 @@ const Task = ({ task, onMarkAsCompleted, onSaveEdit, onRemoveTask }) => {
     setIsEditing(false);
   };
 
+  const formatTime = (minutes) => {
+    if (minutes < 60) return `${minutes} minutes`;
+    const hours = Math.floor(minutes / 60);
+    const remainingMinutes = minutes % 60;
+    return `${hours} hour${hours > 1 ? "s" : ""} ${
+      remainingMinutes > 0 ? `${remainingMinutes} minutes` : ""
+    }`;
+  };
+
   return (
     <ListGroup.Item>
       <Row className="align-items-start">
@@ -44,8 +53,8 @@ const Task = ({ task, onMarkAsCompleted, onSaveEdit, onRemoveTask }) => {
               <span>
                 <h3>{task.title}</h3>
               </span>
-              <h5>{task.title}</h5>
-              <h5>{task.title}</h5>
+              <h5>{task.description}</h5>
+              <h5>{formatTime(task.estimatedTime)}</h5>
               <h5>{task.title}</h5>
             </>
           )}
