@@ -46,15 +46,18 @@ const TaskForms = ({ handleTimeChange, formatTime, minutes, addTask }) => {
           placeholder="Task title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
+          maxLength={26}
         />
       </Form.Group>
 
       <Form.Group className="mb-3">
         <Form.Label>Description</Form.Label>
         <Form.Control
+          as="textarea"
           placeholder="Task description"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
+          maxLength={100}
         />
       </Form.Group>
 

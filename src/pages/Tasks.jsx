@@ -86,9 +86,8 @@ const Tasks = ({ tasks, setTasks }) => {
               </Dropdown.Toggle>
 
               <Dropdown.Menu style={{ width: "366px", textAlign: "center" }}>
-                <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+                <Dropdown.Item href="#/action-1">A-Z</Dropdown.Item>
+                <Dropdown.Item href="#/action-2">Z-A</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
             <Dropdown className="mb-3">
@@ -106,9 +105,7 @@ const Tasks = ({ tasks, setTasks }) => {
               </Dropdown.Toggle>
 
               <Dropdown.Menu style={{ width: "366px", textAlign: "center" }}>
-                <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+                <Dropdown.Item href="#/action-1">High to low</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
             <Dropdown className="mb-3">
@@ -126,9 +123,15 @@ const Tasks = ({ tasks, setTasks }) => {
               </Dropdown.Toggle>
 
               <Dropdown.Menu style={{ width: "366px", textAlign: "center" }}>
-                <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+                <Dropdown.Item href="#/action-1">Busywork</Dropdown.Item>
+                <Dropdown.Item href="#/action-2">Charity</Dropdown.Item>
+                <Dropdown.Item href="#/action-3">Cooking</Dropdown.Item>
+                <Dropdown.Item href="#/action-4">DIY</Dropdown.Item>
+                <Dropdown.Item href="#/action-5">Education</Dropdown.Item>
+                <Dropdown.Item href="#/action-6">Music</Dropdown.Item>
+                <Dropdown.Item href="#/action-7">Recreational</Dropdown.Item>
+                <Dropdown.Item href="#/action-8">Relaxation</Dropdown.Item>
+                <Dropdown.Item href="#/action-9">Social</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
           </Offcanvas.Body>

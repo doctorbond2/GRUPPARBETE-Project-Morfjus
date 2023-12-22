@@ -67,7 +67,7 @@ const Task = ({ task, onMarkAsCompleted, onSaveEdit, onRemoveTask }) => {
           <div className="d-flex flex-column justify-content-end">
             {!task.completed && (
               <OverlayTrigger
-                placement="right"
+                placement="top"
                 delay={{ show: 250, hide: 100 }}
                 overlay={renderTooltip("Mark as Completed")}
               >
@@ -83,7 +83,7 @@ const Task = ({ task, onMarkAsCompleted, onSaveEdit, onRemoveTask }) => {
 
             {!isEditing && (
               <OverlayTrigger
-                placement="right"
+                placement="top"
                 delay={{ show: 250, hide: 100 }}
                 overlay={renderTooltip("Edit")}
               >
@@ -98,7 +98,7 @@ const Task = ({ task, onMarkAsCompleted, onSaveEdit, onRemoveTask }) => {
             )}
 
             <OverlayTrigger
-              placement="right"
+              placement="top"
               delay={{ show: 250, hide: 100 }}
               overlay={renderTooltip("Delete")}
             >
