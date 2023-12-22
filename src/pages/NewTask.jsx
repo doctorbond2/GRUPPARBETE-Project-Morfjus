@@ -21,6 +21,11 @@ const NewTask = () => {
   return (
     <Container>
       <h1>Create a new task</h1>
+      <TaskForms
+        handleTimeChange={handleTimeChange}
+        formatTime={formatTime}
+        minutes={minutes}
+      ></TaskForms>
     </Container>
   );
 };
