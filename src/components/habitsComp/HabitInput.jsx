@@ -45,6 +45,7 @@ const HabitInput = ({ handleChange, handleSubmit, habits, setHabits }) => {
               <option>Low</option>
             </Form.Select>
           </Form.Group>
+          <Button onClick={handleSubmit}>Submit new habit</Button>
         </Form>
       </Container>
     </>
