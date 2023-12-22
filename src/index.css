@@ -36,12 +36,7 @@ a {
 
 .comp-color {
   background-color: #D7E8F7;
-  border: solid 5px #b0bfcc;
-}
-
-html, .bg-color {
-  background-color: whitesmoke;
-  height: 100vh;
+  border: solid 1px #b0bfcc;
 }
 
 /*!
