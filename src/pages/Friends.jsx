@@ -50,15 +50,16 @@ const Friends = ({ friends, setFriends }) => {
   return (
     <div>
       <h1 className="d-flex justify-content-around p-4">My Friends</h1>
-      <div className="d-flex justify-content-around">
+      <div className="d-flex">
         <Button
+          className="m-2"
           onClick={() => {
             handleAdd();
           }}
         >
           Add A Friend
         </Button>
-        <Button variant="primary" onClick={handleShow}>
+        <Button variant="primary" className="m-2" onClick={handleShow}>
           Filter results <i className="bi bi-filter-right"></i>
         </Button>
         <Offcanvas
