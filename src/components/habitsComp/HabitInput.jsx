@@ -9,7 +9,7 @@ const HabitInput = ({ handleChange, handleSubmit, habits, setHabits }) => {
             <Form.Label>New habit</Form.Label>
             <Form.Control
               onChange={(e) => {
-                handleChange(e);
+                handleChange(e, "title");
               }}
               type="text"
               placeholder="YOLO"
@@ -22,7 +22,7 @@ const HabitInput = ({ handleChange, handleSubmit, habits, setHabits }) => {
             <Form.Control
               className="w-25"
               onChange={(e) => {
-                handleChange(e);
+                handleChange(e, "streak");
               }}
               type="number"
               placeholder="Why start at zero?"
@@ -34,7 +34,7 @@ const HabitInput = ({ handleChange, handleSubmit, habits, setHabits }) => {
               placeholder="Select"
               className="w-25"
               onChange={(e) => {
-                handleChange(e);
+                handleChange(e, "prio");
               }}
             >
               <option selected disabled={true}>
@@ -45,6 +45,7 @@ const HabitInput = ({ handleChange, handleSubmit, habits, setHabits }) => {
               <option>Low</option>
             </Form.Select>
           </Form.Group>
+          <Button onClick={handleSubmit}>Submit new habit</Button>
         </Form>
       </Container>
     </>

@@ -2,6 +2,8 @@ import React from "react";
 import { Col, Row, Container } from "react-bootstrap";
 import FriendsHome from "../components/compFriends/FriendsHome";
 import { Link } from "react-router-dom";
+import HomeHabitsCard from "../components/homeComp/HomeHabitsCard";
+import HomeTaskCard from "../components/homeComp/HomeTaskCard";
 const Home = ({ habits, setHabits, friends, setFriends, tasks, setTasks }) => {
   return (
     <>
@@ -25,11 +27,17 @@ const Home = ({ habits, setHabits, friends, setFriends, tasks, setTasks }) => {
             </Link>
           </Col>
           <Col>
+            <h2>Habits</h2>
             <div className="d-flex h-50" style={{ border: "1px solid red" }}>
-              HABITS{habits && habits.map((x, i) => <h2>{x.title}</h2>)}
+              {habits &&
+                habits
+                  .map((habit, i) => <HomeHabitsCard {...{ habit }} />)
+                  .slice(-3)}
             </div>
+            <h2>Tasks</h2>
             <div className="d-flex h-50" style={{ border: "1px solid red" }}>
-              TASKS {tasks && tasks.map((x) => <h2>{x.title}</h2>)}
+              {tasks &&
+                tasks.map((task) => <HomeTaskCard {...{ task }} />).slice(-3)}
             </div>
           </Col>
         </Row>

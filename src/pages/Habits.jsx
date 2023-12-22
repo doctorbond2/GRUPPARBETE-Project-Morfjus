@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useReducer } from "react";
-import { Button } from "react-bootstrap";
+import { Button, Container } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import Habit from "../components/habitsComp/Habit";
 import HabitList from "../components/habitsComp/HabitList";
@@ -83,25 +83,21 @@ const Habits = ({ habits, setHabits }) => {
   return (
     <>
       <div>
-        <Button
-          onClick={() => {
-            navigate("/newHabit");
-          }}
-        >
-          Add new habit
-        </Button>
-        <HabitList
-          {...{
-            dropDownSelectOptions,
-            filterOptions,
-            sortedHabits,
-            setSortedHabits,
-            habits,
-            setHabits,
-            handleFilterPriority,
-            handleSortPriority,
-          }}
-        />
+        <Container>
+          <HabitList
+            {...{
+              navigate,
+              dropDownSelectOptions,
+              filterOptions,
+              sortedHabits,
+              setSortedHabits,
+              habits,
+              setHabits,
+              handleFilterPriority,
+              handleSortPriority,
+            }}
+          />
+        </Container>
       </div>
     </>
   );

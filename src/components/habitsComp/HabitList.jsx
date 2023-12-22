@@ -10,77 +10,90 @@ const HabitList = ({
   setHabits,
   handleFilterPriority,
   handleSortPriority,
+  navigate,
 }) => {
   return (
     <>
-      <div style={{ display: "flex", justifyContent: "end" }}>
-        <Dropdown>
-          <Dropdown.Toggle
-            variant="tertiary"
-            id="dropdown-basic"
-            style={{
-              border: "1px solid black",
-              right: "0",
-              marginLeft: "90vw",
+      <div>
+        <div
+          style={{
+            display: "flex",
+          }}
+        >
+          <Dropdown>
+            <Dropdown.Toggle
+              variant="tertiary"
+              id="dropdown-basic"
+              style={{
+                border: "1px solid black",
+              }}
+            >
+              Sort
+            </Dropdown.Toggle>
+
+            <Dropdown.Menu>
+              {dropDownSelectOptions.map((x, i) => (
+                <Dropdown.Item
+                  onClick={() => {
+                    handleSortPriority(x.value);
+                  }}
+                  value={x.value}
+                >
+                  {x.label}
+                </Dropdown.Item>
+              ))}
+            </Dropdown.Menu>
+          </Dropdown>
+          <Dropdown>
+            <Dropdown.Toggle
+              id="dropdown-basic"
+              variant="tertiary"
+              style={{ border: "1px solid black" }}
+            >
+              Filter{" "}
+            </Dropdown.Toggle>
+            <Dropdown.Menu>
+              {filterOptions.map((x, i) => (
+                <Dropdown.Item
+                  onClick={() => {
+                    handleFilterPriority(x.value);
+                  }}
+                  value={x.value}
+                >
+                  {x.label}
+                </Dropdown.Item>
+              ))}
+            </Dropdown.Menu>
+          </Dropdown>
+          <Button
+            style={{ minWidth: "200px" }}
+            onClick={() => {
+              navigate("/newHabit");
             }}
           >
-            Sort
-          </Dropdown.Toggle>
+            Add new habit
+          </Button>
+        </div>
 
-          <Dropdown.Menu>
-            {dropDownSelectOptions.map((x, i) => (
-              <Dropdown.Item
-                onClick={() => {
-                  handleSortPriority(x.value);
-                }}
-                value={x.value}
-              >
-                {x.label}
-              </Dropdown.Item>
+        <ListGroup>
+          {habits &&
+            sortedHabits.map((habitItem, habitItemIndex) => (
+              <>
+                <ListGroup.Item style={{ border: "none" }}>
+                  <Habit
+                    {...{
+                      habitItem,
+                      sortedHabits,
+                      setSortedHabits,
+                      habitItemIndex,
+                      setHabits,
+                    }}
+                  />
+                </ListGroup.Item>
+              </>
             ))}
-          </Dropdown.Menu>
-        </Dropdown>
-        <Dropdown>
-          <Dropdown.Toggle
-            id="dropdown-basic"
-            variant="tertiary"
-            style={{ border: "1px solid black" }}
-          >
-            Filter{" "}
-          </Dropdown.Toggle>
-          <Dropdown.Menu>
-            {filterOptions.map((x, i) => (
-              <Dropdown.Item
-                onClick={() => {
-                  handleFilterPriority(x.value);
-                }}
-                value={x.value}
-              >
-                {x.label}
-              </Dropdown.Item>
-            ))}
-          </Dropdown.Menu>
-        </Dropdown>
+        </ListGroup>
       </div>
-
-      <ListGroup>
-        {habits &&
-          sortedHabits.map((habitItem, habitItemIndex) => (
-            <>
-              <ListGroup.Item>
-                <Habit
-                  {...{
-                    habitItem,
-                    sortedHabits,
-                    setSortedHabits,
-                    habitItemIndex,
-                    setHabits,
-                  }}
-                />
-              </ListGroup.Item>
-            </>
-          ))}
-      </ListGroup>
     </>
   );
 };
