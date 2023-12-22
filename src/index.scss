@@ -8,4 +8,26 @@
   box-sizing: border-box;
 }
 
+$primary: #e6eff5;
+$secondary: #b0bfcc;
+
+.textColor {
+  color: #000000;
+}
+
+.compColor {
+  background-color: $primary;
+  border: solid 1px $secondary;
+}
+
+#root {
+  background-color: whitesmoke;
+  height: 100vh;
+  
+}
+
+
+
+
+
 @import '~bootstrap/scss/bootstrap'
