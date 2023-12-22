@@ -46,7 +46,7 @@ const TaskForms = ({ handleTimeChange, formatTime, minutes, addTask }) => {
           placeholder="Task title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          maxLength={26}
+          maxLength={32}
         />
       </Form.Group>
 
@@ -57,7 +57,7 @@ const TaskForms = ({ handleTimeChange, formatTime, minutes, addTask }) => {
           placeholder="Task description"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
-          maxLength={100}
+          maxLength={200}
         />
       </Form.Group>
 
@@ -91,7 +91,7 @@ const TaskForms = ({ handleTimeChange, formatTime, minutes, addTask }) => {
           onChange={handleTimeChange}
         />
       </Form.Group>
-
+      <Button>Back</Button>
       <Button variant="primary" type="submit">
         Create task
       </Button>
