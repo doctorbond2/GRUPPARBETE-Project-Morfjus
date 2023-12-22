@@ -13,7 +13,7 @@ const Home = ({ habits, setHabits, friends, setFriends, tasks, setTasks }) => {
         <Row style={{ minHeight: "100vh" }}>
           <Col className="col-3">
             <h2 className="d-flex justify-content-center m-3">
-              Latest 5 Friends
+              Recent Friends
             </h2>
             <div>
               {friends

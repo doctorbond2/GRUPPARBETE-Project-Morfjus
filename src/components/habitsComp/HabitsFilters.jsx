@@ -1,5 +1,12 @@
 import React from "react";
-import { Offcanvas, Dropdown, Row, Col, Button } from "react-bootstrap";
+import {
+  Offcanvas,
+  Dropdown,
+  Row,
+  Col,
+  Button,
+  Accordion,
+} from "react-bootstrap";
 import { useState } from "react";
 const HabitsFilters = ({
   show,
@@ -11,6 +18,8 @@ const HabitsFilters = ({
   filterOptions,
   dropDownSelectOptions,
 }) => {
+  const [selectedFilter, setSelectedFilter] = useState(null);
+  const [selectedSort, setSelectedSort] = useState(null);
   return (
     <>
       <Offcanvas
@@ -22,61 +31,47 @@ const HabitsFilters = ({
           <Offcanvas.Title>Filter & sort</Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
-          {" "}
-          <Dropdown className="mb-3">
-            <Dropdown.Toggle
-              style={{
-                width: "366px",
-                backgroundColor: "#D7E8F7",
-                color: "black",
-                border: "0px",
-              }}
-              variant="dark"
-              id="dropdown-basic"
-            >
-              Filter by Priority
-            </Dropdown.Toggle>
+          <Accordion defaultActiveKey="0" className="mb-3">
+            <Accordion.Item eventKey="0">
+              <Accordion.Header>Filter by Priority</Accordion.Header>
+              <Accordion.Body>
+                {filterOptions.map((x) => (
+                  <Button
+                    key={x.value}
+                    variant={
+                      selectedFilter === x.value ? "primary" : "secondary"
+                    }
+                    onClick={() => {
+                      handleFilterPriority(x.value);
+                      setSelectedFilter(x.value);
+                    }}
+                    className="mb-2"
+                  >
+                    {x.label}
+                  </Button>
+                ))}
+              </Accordion.Body>
+            </Accordion.Item>
 
-            <Dropdown.Menu style={{ width: "366px", textAlign: "center" }}>
-              {filterOptions.map((x, i) => (
-                <Dropdown.Item
-                  onClick={() => {
-                    handleFilterPriority(x.value);
-                  }}
-                  value={x.value}
-                >
-                  {x.label}
-                </Dropdown.Item>
-              ))}
-            </Dropdown.Menu>
-          </Dropdown>
-          <Dropdown className="mb-3">
-            <Dropdown.Toggle
-              style={{
-                width: "366px",
-                backgroundColor: "#D7E8F7",
-                color: "black",
-                border: "0px",
-              }}
-              variant="dark"
-              id="dropdown-basic"
-            >
-              Sorting options
-            </Dropdown.Toggle>
-
-            <Dropdown.Menu style={{ width: "366px", textAlign: "center" }}>
-              {dropDownSelectOptions.map((x, i) => (
-                <Dropdown.Item
-                  onClick={() => {
-                    handleSortPriority(x.value);
-                  }}
-                  value={x.value}
-                >
-                  {x.label}
-                </Dropdown.Item>
-              ))}
-            </Dropdown.Menu>
-          </Dropdown>
+            <Accordion.Item eventKey="1">
+              <Accordion.Header>Sorting options</Accordion.Header>
+              <Accordion.Body>
+                {dropDownSelectOptions.map((x) => (
+                  <Button
+                    key={x.value}
+                    variant={selectedSort === x.value ? "primary" : "secondary"}
+                    onClick={() => {
+                      handleSortPriority(x.value);
+                      setSelectedSort(x.value);
+                    }}
+                    className="mb-2"
+                  >
+                    {x.label}
+                  </Button>
+                ))}
+              </Accordion.Body>
+            </Accordion.Item>
+          </Accordion>
         </Offcanvas.Body>
       </Offcanvas>
     </>

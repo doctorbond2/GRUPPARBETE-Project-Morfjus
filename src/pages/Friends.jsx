@@ -1,12 +1,20 @@
 import { useEffect, useState } from "react";
 import FriendsList from "../components/compFriends/FriendsList";
-import { Button, Dropdown, Offcanvas } from "react-bootstrap";
+import {
+  Button,
+  Dropdown,
+  Offcanvas,
+  Accordion,
+  Row,
+  Col,
+  Container,
+} from "react-bootstrap";
 
 const Friends = ({ friends, setFriends }) => {
   const [filteredFriends, setFilteredFriends] = useState(friends);
 
   const [selectedGender, setSelectedGender] = useState("all");
-
+  const [selectedSort, setSelectedSort] = useState("high");
   const handleAdd = async () => {
     try {
       let response = await fetch("https://randomuser.me/api");
@@ -49,19 +57,28 @@ const Friends = ({ friends, setFriends }) => {
 
   return (
     <div>
-      <h1 className="d-flex justify-content-around p-4">My Friends</h1>
-      <div className="d-flex">
-        <Button
-          className="m-2"
-          onClick={() => {
-            handleAdd();
-          }}
-        >
-          Add A Friend
-        </Button>
-        <Button variant="primary" className="m-2" onClick={handleShow}>
-          Filter results <i className="bi bi-filter-right"></i>
-        </Button>
+      <div className="d-flex" style={{ textAlign: "center" }}>
+        <Container>
+          <Row className="justify-content-end">
+            <Col md="auto">
+              <Button
+                className="m-2"
+                onClick={() => {
+                  handleAdd();
+                }}
+              >
+                Add A Friend
+              </Button>
+              <Button variant="primary" onClick={handleShow}>
+                Filter results <i className="bi bi-filter-right"></i>
+              </Button>
+            </Col>
+          </Row>
+          <Row>
+            <h1>My Friends</h1>
+          </Row>
+        </Container>
+
         <Offcanvas
           style={{ backgroundColor: "#b0bfcc" }}
           show={show}
@@ -71,80 +88,54 @@ const Friends = ({ friends, setFriends }) => {
             <Offcanvas.Title>Filter & sort</Offcanvas.Title>
           </Offcanvas.Header>
           <Offcanvas.Body>
-            <Dropdown className="mb-3">
-              <Dropdown.Toggle
-                style={{
-                  width: "366px",
-                  backgroundColor: "#D7E8F7",
-                  color: "black",
-                  border: "0px",
-                }}
-                variant="dark"
-                id="dropdown-basic"
-              >
-                Sort By Age
-              </Dropdown.Toggle>
-              <Dropdown.Menu style={{ width: "366px", textAlign: "center" }}>
-                <Dropdown.Item
-                  onClick={() => {
-                    handleSortAge("high");
-                  }}
-                >
-                  High to Low
-                </Dropdown.Item>
-                <Dropdown.Item
-                  onClick={() => {
-                    handleSortAge("low");
-                  }}
-                >
-                  Low to High
-                </Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
-            <Dropdown className="mb-3">
-              <Dropdown.Toggle
-                style={{
-                  width: "366px",
-                  backgroundColor: "#D7E8F7",
-                  color: "black",
-                  border: "0px",
-                }}
-                variant="dark"
-                id="dropdown-basic"
-              >
-                Filter By Gender
-              </Dropdown.Toggle>
-              <Dropdown.Menu
-                style={{ width: "366px", textAlign: "center" }}
-                title="Sort By Gender"
-              >
-                {" "}
-                <Dropdown.Item
-                  onClick={() => {
-                    setSelectedGender("all");
-                    handleFilter("all");
-                  }}
-                >
-                  All
-                </Dropdown.Item>
-                <Dropdown.Item
-                  onClick={() => {
-                    setSelectedGender("male");
-                    handleFilter("male");
-                  }}
-                >
-                  Male
-                </Dropdown.Item>
-                <Dropdown.Item
-                  onClick={() => {
-                    setSelectedGender("female");
-                    handleFilter("female");
-                  }}
-                >
-                  Female
-                </Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
+            <Accordion defaultActiveKey="0" className="mb-3">
+              <Accordion.Item eventKey="0">
+                <Accordion.Header>Sort By Age</Accordion.Header>
+                <Accordion.Body>
+                  <Button
+                    variant={selectedSort === "high" ? "primary" : "secondary"}
+                    onClick={() => {
+                      setSelectedSort("high");
+                      handleSortAge("high");
+                    }}
+                    className="mb-2"
+                  >
+                    High to Low
+                  </Button>
+                  <Button
+                    variant={selectedSort === "low" ? "primary" : "secondary"}
+                    onClick={() => {
+                      setSelectedSort("low");
+                      handleSortAge("low");
+                    }}
+                    className="mb-2"
+                  >
+                    Low to High
+                  </Button>
+                </Accordion.Body>
+              </Accordion.Item>
+
+              <Accordion.Item eventKey="1">
+                <Accordion.Header>Filter By Gender</Accordion.Header>
+                <Accordion.Body>
+                  {["all", "male", "female"].map((gender) => (
+                    <Button
+                      key={gender}
+                      variant={
+                        selectedGender === gender ? "primary" : "secondary"
+                      }
+                      onClick={() => {
+                        setSelectedGender(gender);
+                        handleFilter(gender);
+                      }}
+                      className="mb-2"
+                    >
+                      {gender.charAt(0).toUpperCase() + gender.slice(1)}
+                    </Button>
+                  ))}
+                </Accordion.Body>
+              </Accordion.Item>
+            </Accordion>
           </Offcanvas.Body>
         </Offcanvas>
       </div>

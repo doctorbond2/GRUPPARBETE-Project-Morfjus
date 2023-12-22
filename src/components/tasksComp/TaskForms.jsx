@@ -1,10 +1,13 @@
 import React, { useState } from "react";
-import { Button, Form } from "react-bootstrap";
+import { Button, Form, InputGroup } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 const TaskForms = ({ handleTimeChange, formatTime, minutes, addTask }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("Busywork");
+
+  const navigate = useNavigate();
 
   const fetchTaskData = async () => {
     try {
@@ -17,6 +20,10 @@ const TaskForms = ({ handleTimeChange, formatTime, minutes, addTask }) => {
     } catch (error) {
       console.error("Error fetching data: ", error);
     }
+  };
+
+  const handleBack = () => {
+    navigate("/tasks");
   };
 
   const handleSubmit = (event) => {
@@ -36,18 +43,25 @@ const TaskForms = ({ handleTimeChange, formatTime, minutes, addTask }) => {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit} className="mt-4">
       <Form.Group className="mb-3">
         <Form.Label>Title</Form.Label>
-        <Button onClick={fetchTaskData} variant="outline-dark" size="sm">
-          <i className="bi bi-dice-6-fill"></i>
-        </Button>
-        <Form.Control
-          placeholder="Task title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          maxLength={32}
-        />
+        <InputGroup>
+          {" "}
+          <Form.Control
+            placeholder="Task title"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            maxLength={32}
+          />
+          <InputGroup.Text>
+            <a
+              style={{ color: "black", fontSize: "large" }}
+              onClick={fetchTaskData}
+              className="bi bi-dice-6-fill"
+            ></a>
+          </InputGroup.Text>
+        </InputGroup>
       </Form.Group>
 
       <Form.Group className="mb-3">
@@ -91,7 +105,9 @@ const TaskForms = ({ handleTimeChange, formatTime, minutes, addTask }) => {
           onChange={handleTimeChange}
         />
       </Form.Group>
-      <Button>Back</Button>
+      <Button className="m-2" onClick={handleBack}>
+        Back
+      </Button>
       <Button variant="primary" type="submit">
         Create task
       </Button>
