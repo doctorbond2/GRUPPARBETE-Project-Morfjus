@@ -4,7 +4,9 @@ import FriendsHome from "../components/compFriends/FriendsHome";
 import { Link } from "react-router-dom";
 import HomeHabitsCard from "../components/homeComp/HomeHabitsCard";
 import HomeTaskCard from "../components/homeComp/HomeTaskCard";
+import { useNavigate } from "react-router-dom";
 const Home = ({ habits, setHabits, friends, setFriends, tasks, setTasks }) => {
+  const navigate = useNavigate();
   return (
     <>
       <Container className="container-fluid">
@@ -27,14 +29,30 @@ const Home = ({ habits, setHabits, friends, setFriends, tasks, setTasks }) => {
             </Link>
           </Col>
           <Col>
-            <h2 className="m-3">Habits</h2>
+            <h2
+              className="m-3"
+              onClick={() => {
+                navigate("/habits");
+              }}
+              style={{ cursor: "pointer" }}
+            >
+              Habits
+            </h2>
             <div>
               {habits &&
                 habits
                   .map((habit, i) => <HomeHabitsCard {...{ habit }} />)
                   .slice(-3)}
             </div>
-            <h2 className="m-3">Tasks</h2>
+            <h2
+              className="m-3"
+              onClick={() => {
+                navigate("/tasks");
+              }}
+              style={{ cursor: "pointer" }}
+            >
+              Tasks
+            </h2>
             <div className="d-flex h-50">
               {tasks &&
                 tasks.map((task) => <HomeTaskCard {...{ task }} />).slice(-3)}
