@@ -8,13 +8,15 @@ import {
   Container,
   Offcanvas,
   Dropdown,
+  Accordion,
 } from "react-bootstrap";
 import "../index.css";
 import { useNavigate } from "react-router-dom";
 
 const Tasks = ({ tasks, setTasks }) => {
-  const [sortOption, setSortOption] = useState("A-Z");
+  const [sortOption, setSortOption] = useState("Ascending");
   const [filterOption, setFilterOption] = useState("All");
+  const [selectedCategory, setSelectedCategory] = useState("All");
 
   const handleSortChange = (sortType) => {
     setSortOption(sortType);
@@ -26,9 +28,9 @@ const Tasks = ({ tasks, setTasks }) => {
 
   const sortTasks = (taskList) => {
     switch (sortOption) {
-      case "A-Z":
+      case "Ascending":
         return [...taskList].sort((a, b) => a.title.localeCompare(b.title));
-      case "Z-A":
+      case "Descending":
         return [...taskList].sort((a, b) => b.title.localeCompare(a.title));
       case "High to low":
         return [...taskList].sort((a, b) => b.estimatedTime - a.estimatedTime);
@@ -86,6 +88,23 @@ const Tasks = ({ tasks, setTasks }) => {
     setTasks(updatedTasks);
   };
 
+  const handleCategorySelect = (category) => {
+    handleFilterChange(category);
+    setSelectedCategory(category);
+  };
+
+  const isCategorySelected = (category) => {
+    return selectedCategory === category;
+  };
+
+  const handleSortSelect = (sortType) => {
+    setSortOption(sortType);
+  };
+
+  const isSortSelected = (sortType) => {
+    return sortOption === sortType;
+  };
+
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -113,98 +132,78 @@ const Tasks = ({ tasks, setTasks }) => {
             <Offcanvas.Title>Filter & sort</Offcanvas.Title>
           </Offcanvas.Header>
           <Offcanvas.Body>
-            <Dropdown className="mb-3">
-              <Dropdown.Toggle
-                style={{
-                  width: "366px",
-                  backgroundColor: "#D7E8F7",
-                  color: "black",
-                  border: "0px",
-                }}
-                variant="dark"
-                id="dropdown-basic"
-              >
-                Sort by A-Z
-              </Dropdown.Toggle>
-              <Dropdown.Menu style={{ width: "366px", textAlign: "center" }}>
-                <Dropdown.Item onClick={() => handleSortChange("A-Z")}>
-                  A-Z
-                </Dropdown.Item>
-                <Dropdown.Item onClick={() => handleSortChange("Z-A")}>
-                  Z-A
-                </Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
-            <Dropdown className="mb-3">
-              <Dropdown.Toggle
-                style={{
-                  width: "366px",
-                  backgroundColor: "#D7E8F7",
-                  color: "black",
-                  border: "0px",
-                }}
-                variant="dark"
-                id="dropdown-basic"
-              >
-                Sort by time
-              </Dropdown.Toggle>
-              <Dropdown.Menu style={{ width: "366px", textAlign: "center" }}>
-                <Dropdown.Item onClick={() => handleSortChange("High to low")}>
-                  High to low
-                </Dropdown.Item>
-                <Dropdown.Item onClick={() => handleSortChange("Low to high")}>
-                  Low to high
-                </Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
-            <Dropdown className="mb-3">
-              <Dropdown.Toggle
-                style={{
-                  width: "366px",
-                  backgroundColor: "#D7E8F7",
-                  color: "black",
-                  border: "0px",
-                }}
-                variant="dark"
-                id="dropdown-basic"
-              >
-                Sort by category
-              </Dropdown.Toggle>
-              <Dropdown.Menu style={{ width: "366px", textAlign: "center" }}>
-                <Dropdown.Item onClick={() => handleFilterChange("All")}>
-                  All
-                </Dropdown.Item>
-                <Dropdown.Item onClick={() => handleFilterChange("Busywork")}>
-                  Busywork
-                </Dropdown.Item>
-                <Dropdown.Item onClick={() => handleFilterChange("Charity")}>
-                  Charity
-                </Dropdown.Item>
-                <Dropdown.Item onClick={() => handleFilterChange("Cooking")}>
-                  Cooking
-                </Dropdown.Item>
-                <Dropdown.Item onClick={() => handleFilterChange("DIY")}>
-                  DIY
-                </Dropdown.Item>
-                <Dropdown.Item onClick={() => handleFilterChange("Education")}>
-                  Education
-                </Dropdown.Item>
-                <Dropdown.Item onClick={() => handleFilterChange("Music")}>
-                  Music
-                </Dropdown.Item>
-                <Dropdown.Item
-                  onClick={() => handleFilterChange("Recreational")}
-                >
-                  Recreational
-                </Dropdown.Item>
-                <Dropdown.Item onClick={() => handleFilterChange("Relaxation")}>
-                  Relaxation
-                </Dropdown.Item>
-                <Dropdown.Item onClick={() => handleFilterChange("Social")}>
-                  Social
-                </Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
+            <Accordion defaultActiveKey="0" className="mb-3">
+              <Accordion.Item eventKey="0">
+                <Accordion.Header>Sort Alphabetically</Accordion.Header>
+                <Accordion.Body>
+                  {["Ascending", "Descending"].map((sortType) => (
+                    <Button
+                      key={sortType}
+                      variant={
+                        isSortSelected(sortType) ? "primary" : "secondary"
+                      }
+                      onClick={() => handleSortSelect(sortType)}
+                      className="mb-2"
+                    >
+                      {sortType}
+                    </Button>
+                  ))}
+                </Accordion.Body>
+              </Accordion.Item>
+
+              <Accordion.Item eventKey="1">
+                <Accordion.Header>Sort by duration</Accordion.Header>
+                <Accordion.Body>
+                  <Button
+                    variant={
+                      sortOption === "ShortestFirst" ? "primary" : "secondary"
+                    }
+                    onClick={() => handleSortSelect("ShortestFirst")}
+                    className="mb-2"
+                  >
+                    Shortest Tasks First
+                  </Button>
+                  <Button
+                    variant={
+                      sortOption === "LongestFirst" ? "primary" : "secondary"
+                    }
+                    onClick={() => handleSortSelect("LongestFirst")}
+                    className="mb-2"
+                  >
+                    Longest Tasks First
+                  </Button>
+                </Accordion.Body>
+              </Accordion.Item>
+
+              <Accordion.Item eventKey="2">
+                <Accordion.Header>Sort by category</Accordion.Header>
+                <Accordion.Body>
+                  {[
+                    "All",
+                    "Busywork",
+                    "Charity",
+                    "Cooking",
+                    "DIY",
+                    "Education",
+                    "Music",
+                    "Recreational",
+                    "Relaxation",
+                    "Social",
+                  ].map((category) => (
+                    <Button
+                      key={category}
+                      variant={
+                        isCategorySelected(category) ? "primary" : "secondary"
+                      }
+                      onClick={() => handleCategorySelect(category)}
+                      className="mb-2"
+                    >
+                      {category}
+                    </Button>
+                  ))}
+                </Accordion.Body>
+              </Accordion.Item>
+            </Accordion>
           </Offcanvas.Body>
         </Offcanvas>
         <Col>
