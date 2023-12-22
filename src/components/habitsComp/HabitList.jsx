@@ -1,6 +1,13 @@
 import React from "react";
 import Habit from "./Habit";
-import { ListGroup, Dropdown, Button } from "react-bootstrap";
+import {
+  ListGroup,
+  Dropdown,
+  Button,
+  Col,
+  Row,
+  Container,
+} from "react-bootstrap";
 const HabitList = ({
   dropDownSelectOptions,
   filterOptions,
@@ -18,6 +25,8 @@ const HabitList = ({
         <div
           style={{
             display: "flex",
+            width: "fit-content",
+            marginLeft: "3%",
           }}
         >
           <Dropdown>
@@ -76,22 +85,33 @@ const HabitList = ({
         </div>
 
         <ListGroup>
-          {habits &&
-            sortedHabits.map((habitItem, habitItemIndex) => (
-              <>
-                <ListGroup.Item style={{ border: "none" }}>
-                  <Habit
-                    {...{
-                      habitItem,
-                      sortedHabits,
-                      setSortedHabits,
-                      habitItemIndex,
-                      setHabits,
-                    }}
-                  />
-                </ListGroup.Item>
-              </>
-            ))}
+          <Container>
+            <Row>
+              {habits &&
+                sortedHabits.map((habitItem, habitItemIndex) => (
+                  <>
+                    <Col className="col-6">
+                      <ListGroup.Item
+                        style={{
+                          border: "none",
+                          backgroundColor: "transparent",
+                        }}
+                      >
+                        <Habit
+                          {...{
+                            habitItem,
+                            sortedHabits,
+                            setSortedHabits,
+                            habitItemIndex,
+                            setHabits,
+                          }}
+                        />
+                      </ListGroup.Item>
+                    </Col>
+                  </>
+                ))}
+            </Row>
+          </Container>
         </ListGroup>
       </div>
     </>

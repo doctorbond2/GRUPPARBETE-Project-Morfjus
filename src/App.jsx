@@ -26,7 +26,14 @@ function App() {
             path="/"
             element={
               <Home
-                {...{ tasks, setTasks, friends, setFriends, habits, setHabits }}
+                {...{
+                  tasks,
+                  setTasks,
+                  friends,
+                  setFriends,
+                  habits,
+                  setHabits,
+                }}
               />
             }
           />
