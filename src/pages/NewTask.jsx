@@ -28,7 +28,7 @@ const NewTask = ({ setTasks }) => {
         handleTimeChange={handleTimeChange}
         formatTime={formatTime}
         minutes={minutes}
-        addTask={addTask}
+        addTask={addTz < ask}
       />
     </Container>
   );

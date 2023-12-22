@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Button, Row, Col } from "react-bootstrap";
+import { Card, Button, Row, Col, ProgressBar } from "react-bootstrap";
 
 const Habit = ({
   habitItem,
@@ -74,7 +74,26 @@ const Habit = ({
                 </small>
                 {""} Days in a row
               </h5>
+
               <h6>Priority: {str}</h6>
+              <Row className="d-flex align-items-center justify-content-center">
+                <Col className="col-1">
+                  <h5>0</h5>
+                </Col>
+                <Col>
+                  <ProgressBar
+                    now={streak}
+                    max={365}
+                    variant="success"
+                    style={{ backgroundColor: "lightblue" }}
+                    animated
+                  />
+                </Col>
+                <Col className="col-2">
+                  {" "}
+                  <h5>365</h5>
+                </Col>
+              </Row>
             </Col>
             <Col className=" col-2">
               <div className="d-flex flex-column">

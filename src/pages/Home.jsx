@@ -45,7 +45,7 @@ const Home = ({ habits, setHabits, friends, setFriends, tasks, setTasks }) => {
             <h2
               style={{ cursor: "pointer", width: "fit-content" }}
               onClick={() => {
-                navigate("/tasks");
+                navigate("/habits");
               }}
             >
               Tasks

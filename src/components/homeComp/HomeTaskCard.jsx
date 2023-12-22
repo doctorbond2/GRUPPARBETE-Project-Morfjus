@@ -18,14 +18,14 @@ const HomeTaskCard = ({ task }) => {
   // completed: true,
   return (
     <>
-      <Card>
-        <Card.Header>
+      <Card className="h-75 card-tasks m-2 bg-primary">
+        <Card.Header className="h-25">
           <h2>{task.title}</h2>
         </Card.Header>
-        <Card.Body>
+        <Card.Body className="h-auto card-tasks-body">
           <h5>{task.description}</h5>
         </Card.Body>
-        <Card.Footer>
+        <Card.Footer className="h-25">
           <h5 style={task.completed ? { color: "green" } : { color: "red" }}>
             {task.completed ? "Task complete!" : "In progress"}
           </h5>
