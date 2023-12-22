@@ -8,7 +8,7 @@ const Home = ({ habits, setHabits, friends, setFriends, tasks, setTasks }) => {
       <Container className="container-fluid">
         <Row style={{ minHeight: "100vh", backgroundColor: "lightgray" }}>
           <Col className="col-3" style={{ border: "1px solid black" }}>
-            <h2 className="d-flex justify-content-center m-2">
+            <h2 className="d-flex justify-content-center m-3">
               Your Top Friends
             </h2>
             <div>
