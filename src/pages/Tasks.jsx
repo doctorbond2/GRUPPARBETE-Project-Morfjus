@@ -7,7 +7,6 @@ import {
   ListGroup,
   Container,
   Offcanvas,
-  Dropdown,
   Accordion,
 } from "react-bootstrap";
 import "../index.css";
@@ -24,6 +23,7 @@ const Tasks = ({ tasks, setTasks }) => {
 
   const handleFilterChange = (filterType) => {
     setFilterOption(filterType);
+    setSelectedCategory(filterType);
   };
 
   const sortTasks = (taskList) => {
@@ -154,24 +154,18 @@ const Tasks = ({ tasks, setTasks }) => {
               <Accordion.Item eventKey="1">
                 <Accordion.Header>Sort by duration</Accordion.Header>
                 <Accordion.Body>
-                  <Button
-                    variant={
-                      sortOption === "ShortestFirst" ? "primary" : "secondary"
-                    }
-                    onClick={() => handleSortSelect("ShortestFirst")}
-                    className="mb-2"
-                  >
-                    Shortest Tasks First
-                  </Button>
-                  <Button
-                    variant={
-                      sortOption === "LongestFirst" ? "primary" : "secondary"
-                    }
-                    onClick={() => handleSortSelect("LongestFirst")}
-                    className="mb-2"
-                  >
-                    Longest Tasks First
-                  </Button>
+                  {["High to low", "Low to high"].map((sortType) => (
+                    <Button
+                      key={sortType}
+                      variant={
+                        isSortSelected(sortType) ? "primary" : "secondary"
+                      }
+                      onClick={() => handleSortChange(sortType)}
+                      className="mb-2"
+                    >
+                      {sortType === "High to low" ? "Longest Tasks First" : "Shortest Tasks First"}
+                    </Button>
+                  ))}
                 </Accordion.Body>
               </Accordion.Item>
 

@@ -91,14 +91,13 @@ const Habits = ({ habits, setHabits }) => {
           <Row className="justify-content-end">
             <Col md="auto">
               <Button
+                className="m-2"
                 onClick={() => {
                   navigate("/newHabit");
                 }}
               >
                 Add new habit
               </Button>
-            </Col>
-            <Col md="auto">
               <Button variant="primary" onClick={handleShow}>
                 Filter results <i className="bi bi-filter-right"></i>
               </Button>

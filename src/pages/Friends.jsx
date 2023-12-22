@@ -1,6 +1,14 @@
 import { useEffect, useState } from "react";
 import FriendsList from "../components/compFriends/FriendsList";
-import { Button, Dropdown, Offcanvas, Accordion } from "react-bootstrap";
+import {
+  Button,
+  Dropdown,
+  Offcanvas,
+  Accordion,
+  Row,
+  Col,
+  Container,
+} from "react-bootstrap";
 
 const Friends = ({ friends, setFriends }) => {
   const [filteredFriends, setFilteredFriends] = useState(friends);
@@ -49,19 +57,28 @@ const Friends = ({ friends, setFriends }) => {
 
   return (
     <div>
-      <h1 className="d-flex justify-content-around p-4">My Friends</h1>
-      <div className="d-flex">
-        <Button
-          className="m-2"
-          onClick={() => {
-            handleAdd();
-          }}
-        >
-          Add A Friend
-        </Button>
-        <Button variant="primary" className="m-2" onClick={handleShow}>
-          Filter results <i className="bi bi-filter-right"></i>
-        </Button>
+      <div className="d-flex" style={{ textAlign: "center" }}>
+        <Container>
+          <Row className="justify-content-end">
+            <Col md="auto">
+              <Button
+                className="m-2"
+                onClick={() => {
+                  handleAdd();
+                }}
+              >
+                Add A Friend
+              </Button>
+              <Button variant="primary" onClick={handleShow}>
+                Filter results <i className="bi bi-filter-right"></i>
+              </Button>
+            </Col>
+          </Row>
+          <Row>
+            <h1>My Friends</h1>
+          </Row>
+        </Container>
+
         <Offcanvas
           style={{ backgroundColor: "#b0bfcc" }}
           show={show}
@@ -76,9 +93,7 @@ const Friends = ({ friends, setFriends }) => {
                 <Accordion.Header>Sort By Age</Accordion.Header>
                 <Accordion.Body>
                   <Button
-                    variant={
-                      selectedSort === "high" ? "primary" : "secondary"
-                    }
+                    variant={selectedSort === "high" ? "primary" : "secondary"}
                     onClick={() => {
                       setSelectedSort("high");
                       handleSortAge("high");
@@ -88,9 +103,7 @@ const Friends = ({ friends, setFriends }) => {
                     High to Low
                   </Button>
                   <Button
-                    variant={
-                      selectedSort === "low" ? "primary" : "secondary"
-                    }
+                    variant={selectedSort === "low" ? "primary" : "secondary"}
                     onClick={() => {
                       setSelectedSort("low");
                       handleSortAge("low");
@@ -109,9 +122,7 @@ const Friends = ({ friends, setFriends }) => {
                     <Button
                       key={gender}
                       variant={
-                        selectedGender === gender
-                          ? "primary"
-                          : "secondary"
+                        selectedGender === gender ? "primary" : "secondary"
                       }
                       onClick={() => {
                         setSelectedGender(gender);
