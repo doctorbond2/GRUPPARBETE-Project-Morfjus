@@ -19,6 +19,9 @@ const HabitList = ({
   handleSortPriority,
   navigate,
 }) => {
+  const removeHabit = () => {
+    console.log("X");
+  };
   return (
     <>
       <div>

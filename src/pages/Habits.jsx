@@ -83,6 +83,7 @@ const Habits = ({ habits, setHabits }) => {
   return (
     <>
       <div>
+        <div>{""}</div>
         <Container>
           <HabitList
             {...{
