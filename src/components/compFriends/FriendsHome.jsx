@@ -8,14 +8,10 @@ const FriendsHome = ({ data }) => {
 
   return (
     <>
-      <Card className="d-inline-flex flex-wrap m-1" style={{ width: "9rem" }}>
-        <Card.Img variant="top" src={person.picture.medium} />
-        <Card.Body>
-          <Card.Title>
-            {person.name.title} {person.name.first} {person.name.last}
-          </Card.Title>
-        </Card.Body>
-      </Card>
+      <li className="friendLi">
+        <img className="thumbnailPic" src={person.picture.thumbnail} />
+        {person.name.title} {person.name.first} {person.name.last}
+      </li>
     </>
   );
 };
