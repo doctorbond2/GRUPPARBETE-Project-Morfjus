@@ -1,7 +1,8 @@
 import React, { useEffect, useState, useReducer } from "react";
-import { ListGroup, Dropdown, Button } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import Habit from "../components/habitsComp/Habit";
+import HabitList from "../components/habitsComp/HabitList";
 
 const Habits = ({ habits, setHabits }) => {
   const [sortedHabits, setSortedHabits] = useState(habits);
@@ -81,7 +82,6 @@ const Habits = ({ habits, setHabits }) => {
   };
   return (
     <>
-      <div className="habits-asdasd">ASDASDDSADS</div>
       <div>
         <Button
           onClick={() => {
@@ -90,74 +90,18 @@ const Habits = ({ habits, setHabits }) => {
         >
           Add new habit
         </Button>
-        <div style={{ display: "flex", justifyContent: "end" }}>
-          <Dropdown>
-            <Dropdown.Toggle
-              variant="tertiary"
-              id="dropdown-basic"
-              style={{
-                border: "1px solid black",
-                right: "0",
-                marginLeft: "90vw",
-              }}
-            >
-              Sort
-            </Dropdown.Toggle>
-
-            <Dropdown.Menu>
-              {dropDownSelectOptions.map((x, i) => (
-                <Dropdown.Item
-                  onClick={() => {
-                    handleSortPriority(x.value);
-                  }}
-                  value={x.value}
-                >
-                  {x.label}
-                </Dropdown.Item>
-              ))}
-            </Dropdown.Menu>
-          </Dropdown>
-          <Dropdown>
-            <Dropdown.Toggle
-              id="dropdown-basic"
-              variant="tertiary"
-              style={{ border: "1px solid black" }}
-            >
-              Filter{" "}
-            </Dropdown.Toggle>
-            <Dropdown.Menu>
-              {filterOptions.map((x, i) => (
-                <Dropdown.Item
-                  onClick={() => {
-                    handleFilterPriority(x.value);
-                  }}
-                  value={x.value}
-                >
-                  {x.label}
-                </Dropdown.Item>
-              ))}
-            </Dropdown.Menu>
-          </Dropdown>
-        </div>
-
-        <ListGroup>
-          {habits &&
-            sortedHabits.map((habitItem, habitItemIndex) => (
-              <>
-                <ListGroup.Item>
-                  <Habit
-                    {...{
-                      habitItem,
-                      sortedHabits,
-                      setSortedHabits,
-                      habitItemIndex,
-                      setHabits,
-                    }}
-                  />
-                </ListGroup.Item>
-              </>
-            ))}
-        </ListGroup>
+        <HabitList
+          {...{
+            dropDownSelectOptions,
+            filterOptions,
+            sortedHabits,
+            setSortedHabits,
+            habits,
+            setHabits,
+            handleFilterPriority,
+            handleSortPriority,
+          }}
+        />
       </div>
     </>
   );
