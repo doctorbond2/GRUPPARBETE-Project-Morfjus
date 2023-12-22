@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import TaskForms from "../components/tasksComp/TaskForms";
-import { Button, Form, Container } from "react-bootstrap";
-import "bootstrap-icons/font/bootstrap-icons.css";
+import { Container } from "react-bootstrap";
 
-const NewTask = () => {
+const NewTask = ({ setTasks }) => {
   const [minutes, setMinutes] = useState(5);
+
   const handleTimeChange = (event) => {
     setMinutes(event.target.value);
   };
@@ -18,6 +18,9 @@ const NewTask = () => {
     }`;
   };
 
+  const addTask = (newTask) => {
+    setTasks((prevTasks) => [...prevTasks, newTask]);
+  };
   return (
     <Container>
       <h1>Create a new task</h1>
@@ -25,7 +28,8 @@ const NewTask = () => {
         handleTimeChange={handleTimeChange}
         formatTime={formatTime}
         minutes={minutes}
-      ></TaskForms>
+        addTask={addTask}
+      />
     </Container>
   );
 };

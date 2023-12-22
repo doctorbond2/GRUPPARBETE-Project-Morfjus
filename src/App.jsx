@@ -8,6 +8,7 @@ import Home from "./pages/Home";
 import Habits from "./pages/Habits";
 import NewHabit from "./pages/NewHabit";
 import NavbarLayout from "./pages/NavbarLayout";
+import initialTasks from "./mockData/initialTasks";
 
 const defaultHabits = [
   { title: "Learning guitar", streak: 2, prio: { str: "Low", tier: 1 } },
@@ -28,13 +29,9 @@ const defaultHabits = [
     prio: { str: "Low", tier: 1 },
   },
 ];
+
 function App() {
-  const dummyTasks = [
-    { id: 1, title: "Do dishes", completed: false },
-    { id: 2, title: "Feed fish", completed: true },
-    { id: 3, title: "Walk cat", completed: false },
-  ];
-  const [tasks, setTasks] = useState(dummyTasks);
+  const [tasks, setTasks] = useState(initialTasks);
   const [habits, setHabits] = useState(defaultHabits);
   const [friends, setFriends] = useState([
     {

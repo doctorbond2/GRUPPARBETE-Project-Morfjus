@@ -1,0 +1,60 @@
+const initialTasks = [
+  {
+    id: 1,
+    title: "Do dishes",
+    description: "Clean all the plates and utensils from dinner.",
+    category: "Busywork",
+    estimatedTime: 30,
+    completed: false,
+  },
+  {
+    id: 2,
+    title: "Feed fish",
+    description: "Give the goldfish their favorite flakes.",
+    category: "Recreational",
+    estimatedTime: 10,
+    completed: true,
+  },
+  {
+    id: 3,
+    title: "Walk cat",
+    description: "Take Mr. Whiskers for his evening stroll.",
+    category: "Relaxation",
+    estimatedTime: 45,
+    completed: true,
+  },
+  {
+    id: 4,
+    title: "Organize bookshelf",
+    description: "Arrange the books by genre and author.",
+    category: "DIY",
+    estimatedTime: 60,
+    completed: false,
+  },
+  {
+    id: 6,
+    title: "Bake cookies",
+    description: "Bake a batch of chocolate chip cookies.",
+    category: "Cooking",
+    estimatedTime: 90,
+    completed: true,
+  },
+  {
+    id: 8,
+    title: "Volunteer at the shelter",
+    description: "Help out at the local animal shelter for the afternoon.",
+    category: "Charity",
+    estimatedTime: 180,
+    completed: false,
+  },
+  {
+    id: 9,
+    title: "Host a game night",
+    description: "Organize a board game night with friends.",
+    category: "Social",
+    estimatedTime: 240,
+    completed: false,
+  },
+];
+
+export default initialTasks;

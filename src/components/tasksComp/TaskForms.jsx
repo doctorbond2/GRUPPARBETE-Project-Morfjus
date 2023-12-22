@@ -1,40 +1,71 @@
 import React, { useState } from "react";
-import { Button, Form, Container } from "react-bootstrap";
-import "bootstrap-icons/font/bootstrap-icons.css";
+import { Button, Form } from "react-bootstrap";
 
-const TaskForms = ({ handleTimeChange, formatTime, minutes }) => {
+const TaskForms = ({ handleTimeChange, formatTime, minutes, addTask }) => {
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [category, setCategory] = useState("Busywork");
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const newTask = {
+      id: Date.now(),
+      title,
+      description,
+      category,
+      estimatedTime: minutes,
+      completed: false,
+    };
+    addTask(newTask);
+    setTitle("");
+    setDescription("");
+    setCategory("Busywork");
+  };
+
   return (
-    <Form>
+    <Form onSubmit={handleSubmit}>
       <Form.Group className="mb-3">
         <Form.Label>Title</Form.Label>
         <Button variant="outline-dark" size="sm">
           <i className="bi bi-dice-6-fill"></i>
         </Button>
-        <Form.Control placeholder="Task title" />
-        <Form.Text className="text-muted"></Form.Text>
+        <Form.Control
+          placeholder="Task title"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+        />
       </Form.Group>
 
       <Form.Group className="mb-3">
         <Form.Label>Description</Form.Label>
-        <Form.Control placeholder="Task description" />
+        <Form.Control
+          placeholder="Task description"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+        />
       </Form.Group>
+
       <Form.Group className="mb-3">
         <Form.Label>Category</Form.Label>
-        <Form.Select>
-          <option>Busywork</option>
-          <option>Charity</option>
-          <option>Cooking</option>
-          <option>DIY</option>
-          <option>Education</option>
-          <option>Music</option>
-          <option>Recreational</option>
-          <option>Relaxation</option>
-          <option>Social</option>
+        <Form.Select
+          value={category}
+          onChange={(e) => setCategory(e.target.value)}
+        >
+          <option value="Busywork">Busywork</option>
+          <option value="Charity">Charity</option>
+          <option value="Cooking">Cooking</option>
+          <option value="DIY">DIY</option>
+          <option value="Education">Education</option>
+          <option value="Music">Music</option>
+          <option value="Recreational">Recreational</option>
+          <option value="Relaxation">Relaxation</option>
+          <option value="Social">Social</option>
         </Form.Select>
       </Form.Group>
+
       <Form.Group className="mb-3">
         <Form.Label>Estimated Time: {formatTime(minutes)}</Form.Label>
-        <br></br>
+        <br />
         <Form.Range
           style={{ width: "50%" }}
           min="5"
@@ -44,10 +75,12 @@ const TaskForms = ({ handleTimeChange, formatTime, minutes }) => {
           onChange={handleTimeChange}
         />
       </Form.Group>
+
       <Button variant="primary" type="submit">
         Create task
       </Button>
     </Form>
   );
 };
+
 export default TaskForms;
