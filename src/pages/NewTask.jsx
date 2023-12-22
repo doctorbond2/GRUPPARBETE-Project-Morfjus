@@ -23,12 +23,12 @@ const NewTask = ({ setTasks }) => {
   };
   return (
     <Container>
-      <h1>Create a new task</h1>
+      <h1 className="mt-4">Create a new task</h1>
       <TaskForms
         handleTimeChange={handleTimeChange}
         formatTime={formatTime}
         minutes={minutes}
-        addTask={addTz < ask}
+        addTask={addTask}
       />
     </Container>
   );

@@ -13,8 +13,48 @@ import "../index.css";
 import { useNavigate } from "react-router-dom";
 
 const Tasks = ({ tasks, setTasks }) => {
-  const completedTasks = tasks.filter((task) => task.completed);
-  const unCompletedTasks = tasks.filter((task) => !task.completed);
+  const [sortOption, setSortOption] = useState("A-Z");
+  const [filterOption, setFilterOption] = useState("All");
+
+  const handleSortChange = (sortType) => {
+    setSortOption(sortType);
+  };
+
+  const handleFilterChange = (filterType) => {
+    setFilterOption(filterType);
+  };
+
+  const sortTasks = (taskList) => {
+    switch (sortOption) {
+      case "A-Z":
+        return [...taskList].sort((a, b) => a.title.localeCompare(b.title));
+      case "Z-A":
+        return [...taskList].sort((a, b) => b.title.localeCompare(a.title));
+      case "High to low":
+        return [...taskList].sort((a, b) => b.estimatedTime - a.estimatedTime);
+      case "Low to high":
+        return [...taskList].sort((a, b) => a.estimatedTime - b.estimatedTime);
+      default:
+        return taskList;
+    }
+  };
+
+  const filterAndSortTasks = (taskList) => {
+    const filteredTasks =
+      filterOption === "All"
+        ? taskList
+        : taskList.filter((task) => task.category === filterOption);
+
+    return sortTasks(filteredTasks);
+  };
+
+  const completedTasks = filterAndSortTasks(
+    tasks.filter((task) => task.completed)
+  );
+  const unCompletedTasks = filterAndSortTasks(
+    tasks.filter((task) => !task.completed)
+  );
+
   const navigate = useNavigate();
 
   const handleCreateNewTask = () => {
@@ -55,6 +95,9 @@ const Tasks = ({ tasks, setTasks }) => {
     <Container>
       <Row className="justify-content-end">
         <Col md="auto">
+          <Button className="m-2" onClick={handleCreateNewTask}>
+            Create a new task
+          </Button>
           <Button variant="primary" onClick={handleShow}>
             Filter results <i className="bi bi-filter-right"></i>
           </Button>
@@ -70,7 +113,6 @@ const Tasks = ({ tasks, setTasks }) => {
             <Offcanvas.Title>Filter & sort</Offcanvas.Title>
           </Offcanvas.Header>
           <Offcanvas.Body>
-            {" "}
             <Dropdown className="mb-3">
               <Dropdown.Toggle
                 style={{
@@ -84,10 +126,13 @@ const Tasks = ({ tasks, setTasks }) => {
               >
                 Sort by A-Z
               </Dropdown.Toggle>
-
               <Dropdown.Menu style={{ width: "366px", textAlign: "center" }}>
-                <Dropdown.Item href="#/action-1">A-Z</Dropdown.Item>
-                <Dropdown.Item href="#/action-2">Z-A</Dropdown.Item>
+                <Dropdown.Item onClick={() => handleSortChange("A-Z")}>
+                  A-Z
+                </Dropdown.Item>
+                <Dropdown.Item onClick={() => handleSortChange("Z-A")}>
+                  Z-A
+                </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
             <Dropdown className="mb-3">
@@ -103,9 +148,13 @@ const Tasks = ({ tasks, setTasks }) => {
               >
                 Sort by time
               </Dropdown.Toggle>
-
               <Dropdown.Menu style={{ width: "366px", textAlign: "center" }}>
-                <Dropdown.Item href="#/action-1">High to low</Dropdown.Item>
+                <Dropdown.Item onClick={() => handleSortChange("High to low")}>
+                  High to low
+                </Dropdown.Item>
+                <Dropdown.Item onClick={() => handleSortChange("Low to high")}>
+                  Low to high
+                </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
             <Dropdown className="mb-3">
@@ -121,17 +170,39 @@ const Tasks = ({ tasks, setTasks }) => {
               >
                 Sort by category
               </Dropdown.Toggle>
-
               <Dropdown.Menu style={{ width: "366px", textAlign: "center" }}>
-                <Dropdown.Item href="#/action-1">Busywork</Dropdown.Item>
-                <Dropdown.Item href="#/action-2">Charity</Dropdown.Item>
-                <Dropdown.Item href="#/action-3">Cooking</Dropdown.Item>
-                <Dropdown.Item href="#/action-4">DIY</Dropdown.Item>
-                <Dropdown.Item href="#/action-5">Education</Dropdown.Item>
-                <Dropdown.Item href="#/action-6">Music</Dropdown.Item>
-                <Dropdown.Item href="#/action-7">Recreational</Dropdown.Item>
-                <Dropdown.Item href="#/action-8">Relaxation</Dropdown.Item>
-                <Dropdown.Item href="#/action-9">Social</Dropdown.Item>
+                <Dropdown.Item onClick={() => handleFilterChange("All")}>
+                  All
+                </Dropdown.Item>
+                <Dropdown.Item onClick={() => handleFilterChange("Busywork")}>
+                  Busywork
+                </Dropdown.Item>
+                <Dropdown.Item onClick={() => handleFilterChange("Charity")}>
+                  Charity
+                </Dropdown.Item>
+                <Dropdown.Item onClick={() => handleFilterChange("Cooking")}>
+                  Cooking
+                </Dropdown.Item>
+                <Dropdown.Item onClick={() => handleFilterChange("DIY")}>
+                  DIY
+                </Dropdown.Item>
+                <Dropdown.Item onClick={() => handleFilterChange("Education")}>
+                  Education
+                </Dropdown.Item>
+                <Dropdown.Item onClick={() => handleFilterChange("Music")}>
+                  Music
+                </Dropdown.Item>
+                <Dropdown.Item
+                  onClick={() => handleFilterChange("Recreational")}
+                >
+                  Recreational
+                </Dropdown.Item>
+                <Dropdown.Item onClick={() => handleFilterChange("Relaxation")}>
+                  Relaxation
+                </Dropdown.Item>
+                <Dropdown.Item onClick={() => handleFilterChange("Social")}>
+                  Social
+                </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
           </Offcanvas.Body>
@@ -149,7 +220,6 @@ const Tasks = ({ tasks, setTasks }) => {
               />
             ))}
           </ListGroup>
-          <Button onClick={handleCreateNewTask}>Create a new task</Button>
         </Col>
         <Col>
           <h2>Completed Tasks</h2>
