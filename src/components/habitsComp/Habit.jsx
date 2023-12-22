@@ -58,7 +58,7 @@ const Habit = ({
   };
   return (
     <>
-      <Card>
+      <Card className="w-50">
         <Card.Header>
           <h2>{title}</h2>
         </Card.Header>
@@ -76,18 +76,16 @@ const Habit = ({
             }}
             variant={"success"}
             value="inc"
-          >
-            +1
-          </Button>
+            className="bi bi-arrow-up"
+          ></Button>
           <Button
             onClick={(e) => {
               handleActiveStreak(e);
             }}
             variant={"warning"}
             value="dec"
-          >
-            -1
-          </Button>
+            className="bi bi-arrow-down"
+          ></Button>
           <Button
             onClick={(e) => {
               handleActiveStreak(e);
