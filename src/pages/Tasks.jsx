@@ -61,6 +61,81 @@ const Tasks = ({ tasks, setTasks }) => {
         </Col>
       </Row>
       <Row>
+        <Offcanvas
+          style={{ backgroundColor: "#b0bfcc" }}
+          show={show}
+          onHide={handleClose}
+        >
+          <Offcanvas.Header closeButton>
+            <Offcanvas.Title>Filter & sort</Offcanvas.Title>
+          </Offcanvas.Header>
+          <Offcanvas.Body>
+            {" "}
+            <Dropdown className="mb-3">
+              <Dropdown.Toggle
+                style={{
+                  width: "366px",
+                  backgroundColor: "#D7E8F7",
+                  color: "black",
+                  border: "0px",
+                }}
+                variant="dark"
+                id="dropdown-basic"
+              >
+                Sort by A-Z
+              </Dropdown.Toggle>
+
+              <Dropdown.Menu style={{ width: "366px", textAlign: "center" }}>
+                <Dropdown.Item href="#/action-1">A-Z</Dropdown.Item>
+                <Dropdown.Item href="#/action-2">Z-A</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+            <Dropdown className="mb-3">
+              <Dropdown.Toggle
+                style={{
+                  width: "366px",
+                  backgroundColor: "#D7E8F7",
+                  color: "black",
+                  border: "0px",
+                }}
+                variant="dark"
+                id="dropdown-basic"
+              >
+                Sort by time
+              </Dropdown.Toggle>
+
+              <Dropdown.Menu style={{ width: "366px", textAlign: "center" }}>
+                <Dropdown.Item href="#/action-1">High to low</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+            <Dropdown className="mb-3">
+              <Dropdown.Toggle
+                style={{
+                  width: "366px",
+                  backgroundColor: "#D7E8F7",
+                  color: "black",
+                  border: "0px",
+                }}
+                variant="dark"
+                id="dropdown-basic"
+              >
+                Sort by category
+              </Dropdown.Toggle>
+
+              <Dropdown.Menu style={{ width: "366px", textAlign: "center" }}>
+                <Dropdown.Item href="#/action-1">Busywork</Dropdown.Item>
+                <Dropdown.Item href="#/action-2">Charity</Dropdown.Item>
+                <Dropdown.Item href="#/action-3">Cooking</Dropdown.Item>
+                <Dropdown.Item href="#/action-4">DIY</Dropdown.Item>
+                <Dropdown.Item href="#/action-5">Education</Dropdown.Item>
+                <Dropdown.Item href="#/action-6">Music</Dropdown.Item>
+                <Dropdown.Item href="#/action-7">Recreational</Dropdown.Item>
+                <Dropdown.Item href="#/action-8">Relaxation</Dropdown.Item>
+                <Dropdown.Item href="#/action-9">Social</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+          </Offcanvas.Body>
+        </Offcanvas>
         <Col>
           <h2>Uncompleted Tasks</h2>
           <ListGroup className="p-2 ms-auto">

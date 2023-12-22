@@ -16,7 +16,12 @@ const Task = ({ task, onMarkAsCompleted, onSaveEdit, onRemoveTask }) => {
   const [editedTitle, setEditedTitle] = useState(task.title);
 
   const renderTooltip = (message) => (
-    <Tooltip id={`tooltip-${task.id}-${message}`}>{message}</Tooltip>
+    <Tooltip
+      style={{ maxWidth: "200px", zIndex: "10" }}
+      id={`tooltip-${task.id}-${message}`}
+    >
+      {message}
+    </Tooltip>
   );
 
   const handleSave = () => {
@@ -55,7 +60,6 @@ const Task = ({ task, onMarkAsCompleted, onSaveEdit, onRemoveTask }) => {
               </span>
               <h5>{task.description}</h5>
               <h5>{formatTime(task.estimatedTime)}</h5>
-              <h5>{task.title}</h5>
             </>
           )}
         </Col>
@@ -63,7 +67,7 @@ const Task = ({ task, onMarkAsCompleted, onSaveEdit, onRemoveTask }) => {
           <div className="d-flex flex-column justify-content-end">
             {!task.completed && (
               <OverlayTrigger
-                placement="right"
+                placement="top"
                 delay={{ show: 250, hide: 100 }}
                 overlay={renderTooltip("Mark as Completed")}
               >
@@ -79,7 +83,7 @@ const Task = ({ task, onMarkAsCompleted, onSaveEdit, onRemoveTask }) => {
 
             {!isEditing && (
               <OverlayTrigger
-                placement="right"
+                placement="top"
                 delay={{ show: 250, hide: 100 }}
                 overlay={renderTooltip("Edit")}
               >
@@ -94,7 +98,7 @@ const Task = ({ task, onMarkAsCompleted, onSaveEdit, onRemoveTask }) => {
             )}
 
             <OverlayTrigger
-              placement="right"
+              placement="top"
               delay={{ show: 250, hide: 100 }}
               overlay={renderTooltip("Delete")}
             >
