@@ -1,8 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import Task from "../components/tasksComp/Task";
-import { Row, Col, Button, ListGroup, Container } from "react-bootstrap";
+import {
+  Row,
+  Col,
+  Button,
+  ListGroup,
+  Container,
+  Offcanvas,
+  Dropdown,
+} from "react-bootstrap";
 import "../index.css";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 const Tasks = ({ tasks, setTasks }) => {
   const completedTasks = tasks.filter((task) => task.completed);
@@ -10,7 +18,7 @@ const Tasks = ({ tasks, setTasks }) => {
   const navigate = useNavigate();
 
   const handleCreateNewTask = () => {
-    navigate('/NewTask');
+    navigate("/NewTask");
   };
 
   const removeTask = (taskId) => {
@@ -38,9 +46,90 @@ const Tasks = ({ tasks, setTasks }) => {
     setTasks(updatedTasks);
   };
 
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   return (
     <Container>
+      {/* Place the button in its own row at the top, aligned to the right */}
+      <Row className="justify-content-end">
+        <Col md="auto">
+          <Button variant="primary" onClick={handleShow}>
+            Filter results <i className="bi bi-filter-right"></i>
+          </Button>
+        </Col>
+      </Row>
       <Row>
+        <Offcanvas show={show} onHide={handleClose}>
+          <Offcanvas.Header closeButton>
+            <Offcanvas.Title>Filter & sort</Offcanvas.Title>
+          </Offcanvas.Header>
+          <Offcanvas.Body>
+            {" "}
+            <Dropdown className="mb-3">
+              <Dropdown.Toggle
+                style={{
+                  width: "366px",
+                  backgroundColor: "white",
+                  color: "black",
+                  fontWeight: "bold",
+                }}
+                variant="success"
+                id="dropdown-basic"
+              >
+                Sort by A-Z
+              </Dropdown.Toggle>
+
+              <Dropdown.Menu style={{ width: "366px", textAlign: "center" }}>
+                <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+                <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+                <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+            <Dropdown className="mb-3">
+              <Dropdown.Toggle
+                style={{
+                  width: "366px",
+                  backgroundColor: "white",
+                  color: "black",
+                  fontWeight: "bold",
+                }}
+                variant="success"
+                id="dropdown-basic"
+              >
+                Sort by time
+              </Dropdown.Toggle>
+
+              <Dropdown.Menu style={{ width: "366px", textAlign: "center" }}>
+                <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+                <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+                <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+            <Dropdown className="mb-3">
+              <Dropdown.Toggle
+                style={{
+                  width: "366px",
+                  backgroundColor: "white",
+                  color: "black",
+                  fontWeight: "bold",
+                }}
+                variant="success"
+                id="dropdown-basic"
+              >
+                Sort by category
+              </Dropdown.Toggle>
+
+              <Dropdown.Menu style={{ width: "366px", textAlign: "center" }}>
+                <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+                <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+                <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+          </Offcanvas.Body>
+        </Offcanvas>
         <Col>
           <h2>Uncompleted Tasks</h2>
           <ListGroup className="p-2 ms-auto">
