@@ -28,7 +28,7 @@ const Home = ({ habits, setHabits, friends, setFriends, tasks, setTasks }) => {
           </Col>
           <Col>
             <h2 className="m-3">Habits</h2>
-            <div className="d-flex h-50">
+            <div>
               {habits &&
                 habits
                   .map((habit, i) => <HomeHabitsCard {...{ habit }} />)

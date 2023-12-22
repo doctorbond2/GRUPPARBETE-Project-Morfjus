@@ -24,12 +24,24 @@ a {
   color: red;
 }
 
+.card-habits-body {
+  background-color: white;
+}
+
 .home-cards-body {
   max-height: 8rem;
 }
 
 .home-cards-footer {
   max-height: 8rem;
+}
+
+.card-tasks {
+  max-width: 20rem;
+}
+
+.card-tasks-body {
+  background-color: white;
 }
 
 * {
@@ -44,12 +56,7 @@ a {
 
 .comp-color {
   background-color: #D7E8F7;
-  border: solid 5px #b0bfcc;
-}
-
-html, .bg-color {
-  background-color: whitesmoke;
-  height: 100vh;
+  border: solid 2px #b0bfcc;
 }
 
 /*!

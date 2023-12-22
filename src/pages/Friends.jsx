@@ -12,14 +12,18 @@ const Friends = ({ friends, setFriends }) => {
       let response = await fetch("https://randomuser.me/api");
       let json = await response.json();
       let updatedFriends = [...friends, json];
-      await setFriends(updatedFriends);
-      await handleFilter(selectedGender, updatedFriends);
+      setFriends(updatedFriends);
+      handleFilter(selectedGender, updatedFriends);
     } catch (error) {
       alert("Error Adding Friend", error);
     }
   };
 
-  const handleFilter = (gender, friends) => {
+  useEffect(() => {
+    handleFilter(selectedGender, friends);
+  }, [selectedGender, friends]);
+
+  const handleFilter = (gender) => {
     let updatedFilteredFriends = [...friends];
     gender === "all"
       ? (updatedFilteredFriends = [...friends])
@@ -109,7 +113,10 @@ const Friends = ({ friends, setFriends }) => {
               >
                 Filter By Gender
               </Dropdown.Toggle>
-              <Dropdown.Menu style={{ width: "366px", textAlign: "center" }} title="Sort By Gender">
+              <Dropdown.Menu
+                style={{ width: "366px", textAlign: "center" }}
+                title="Sort By Gender"
+              >
                 {" "}
                 <Dropdown.Item
                   onClick={() => {
