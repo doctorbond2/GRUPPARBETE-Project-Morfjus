@@ -1,9 +1,10 @@
 import React from "react";
 import { Col, Row, Container } from "react-bootstrap";
 import FriendsHome from "../components/compFriends/FriendsHome";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import HomeHabitsCard from "../components/homeComp/HomeHabitsCard";
 import HomeTaskCard from "../components/homeComp/HomeTaskCard";
+import { useNavigate } from "react-router-dom";
 const Home = ({ habits, setHabits, friends, setFriends, tasks, setTasks }) => {
   const navigate = useNavigate();
   return (
@@ -29,28 +30,30 @@ const Home = ({ habits, setHabits, friends, setFriends, tasks, setTasks }) => {
           </Col>
           <Col>
             <h2
-              style={{ cursor: "pointer", width: "fit-content" }}
+              className="m-3"
               onClick={() => {
                 navigate("/habits");
               }}
+              style={{ cursor: "pointer" }}
             >
               Habits
             </h2>
-            <div className="d-flex h-50" style={{ border: "1px solid red" }}>
+            <div>
               {habits &&
                 habits
                   .map((habit, i) => <HomeHabitsCard {...{ habit }} />)
                   .slice(-3)}
             </div>
             <h2
-              style={{ cursor: "pointer", width: "fit-content" }}
+              className="m-3"
               onClick={() => {
-                navigate("/habits");
+                navigate("/tasks");
               }}
+              style={{ cursor: "pointer" }}
             >
               Tasks
             </h2>
-            <div className="d-flex h-50" style={{ border: "1px solid red" }}>
+            <div className="d-flex h-50">
               {tasks &&
                 tasks.map((task) => <HomeTaskCard {...{ task }} />).slice(-3)}
             </div>
