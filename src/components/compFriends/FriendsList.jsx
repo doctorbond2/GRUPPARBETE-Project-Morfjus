@@ -15,6 +15,7 @@ const FriendsList = ({ data }) => {
           className="comp-color"
           variant="top"
           src={person.picture.large}
+          alt="picture of profile user"
         />
         <Card.Body>
           <Card.Title>
