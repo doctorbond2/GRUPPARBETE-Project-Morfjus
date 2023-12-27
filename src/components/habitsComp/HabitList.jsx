@@ -19,9 +19,6 @@ const HabitList = ({
   handleSortPriority,
   navigate,
 }) => {
-  const removeHabit = () => {
-    console.log("X");
-  };
   return (
     <>
       <div>
@@ -30,10 +27,9 @@ const HabitList = ({
             <Row>
               {habits &&
                 sortedHabits.map((habitItem, habitItemIndex) => (
-                  <>
+                  <div key={habitItemIndex}>
                     <Col className="col-6">
                       <ListGroup.Item
-                        key={"habit-" + habitItemIndex}
                         style={{
                           border: "none",
                           backgroundColor: "transparent",
@@ -51,7 +47,7 @@ const HabitList = ({
                         />
                       </ListGroup.Item>
                     </Col>
-                  </>
+                  </div>
                 ))}
             </Row>
           </Container>

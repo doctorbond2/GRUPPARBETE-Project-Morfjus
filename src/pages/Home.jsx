@@ -40,7 +40,7 @@ const Home = ({ habits, setHabits, friends, setFriends, tasks, setTasks }) => {
             <div>
               {habits &&
                 habits
-                  .map((habit, i) => <HomeHabitsCard {...{ habit }} />)
+                  .map((habit, i) => <HomeHabitsCard key={i} {...{ habit }} />)
                   .slice(-3)}
             </div>
             <h2
@@ -53,7 +53,9 @@ const Home = ({ habits, setHabits, friends, setFriends, tasks, setTasks }) => {
             </h2>
             <div className="d-flex h-50">
               {tasks &&
-                tasks.map((task) => <HomeTaskCard {...{ task }} />).slice(-3)}
+                tasks
+                  .map((task, i) => <HomeTaskCard key={i} {...{ task }} />)
+                  .slice(-3)}
             </div>
           </Col>
         </Row>
