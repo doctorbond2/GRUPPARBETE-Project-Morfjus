@@ -8,7 +8,7 @@
   box-sizing: border-box;
 }
 
-$primary: #D7E8F7;
+$primary: #d7e8f7;
 $secondary: #b0bfcc;
 
 .text-color {
@@ -20,8 +20,8 @@ $secondary: #b0bfcc;
   border: solid 2px $secondary;
 }
 
+html {
+  overflow-y: scroll;
+}
 
-
-
-
-@import '~bootstrap/scss/bootstrap'
+@import "~bootstrap/scss/bootstrap";
