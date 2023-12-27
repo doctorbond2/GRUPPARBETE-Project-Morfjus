@@ -1,5 +1,13 @@
 import React from "react";
-import { Card, Button, Row, Col, ProgressBar } from "react-bootstrap";
+import {
+  Card,
+  Button,
+  Row,
+  Col,
+  ProgressBar,
+  OverlayTrigger,
+  Tooltip,
+} from "react-bootstrap";
 
 const Habit = ({
   habitItem,
@@ -7,6 +15,7 @@ const Habit = ({
   setSortedHabits,
   habitItemIndex,
   setHabits,
+  habits,
 }) => {
   const {
     streak,
@@ -56,6 +65,22 @@ const Habit = ({
         break;
     }
   };
+  const handleDelete = (target) => {
+    let updatedHabits = [...habits].filter((x, i) => {
+      return i !== target;
+    });
+    setHabits(updatedHabits);
+    setSortedHabits(updatedHabits);
+    console.log(habits);
+  };
+  const renderTooltip = (message) => (
+    <Tooltip
+      style={{ maxWidth: "200px", zIndex: "10" }}
+      id={`tooltip-${message}`}
+    >
+      {message}
+    </Tooltip>
+  );
   return (
     <>
       <Card>
@@ -72,13 +97,28 @@ const Habit = ({
                 >
                   {streak}
                 </small>
-                {""} Days in a row
+                {""} days in a row
               </h5>
 
-              <h6>Priority: {str}</h6>
+              <h6>
+                Priority:{" "}
+                {
+                  <span
+                    style={
+                      str === "High"
+                        ? { color: "red" }
+                        : str === "Medium"
+                        ? { color: "blue" }
+                        : { color: "purple" }
+                    }
+                  >
+                    {str}
+                  </span>
+                }
+              </h6>
               <Row className="d-flex align-items-center justify-content-center">
                 <Col className="col-1">
-                  <h5>0</h5>
+                  <h5 style={{ marginBottom: "0" }}>0</h5>
                 </Col>
                 <Col>
                   <ProgressBar
@@ -91,12 +131,12 @@ const Habit = ({
                 </Col>
                 <Col className="col-2">
                   {" "}
-                  <h5>365</h5>
+                  <h5 style={{ marginBottom: "0" }}>365</h5>
                 </Col>
               </Row>
             </Col>
-            <Col className=" col-2">
-              <div className="d-flex flex-column">
+            <Col className="col-2">
+              <div className="d-flex flex-column" style={{ width: "40px" }}>
                 <Button
                   size="sm"
                   onClick={(e) => {
@@ -113,16 +153,38 @@ const Habit = ({
                   variant={"warning"}
                   value="dec"
                   className="bi bi-arrow-down"
+                  style={{ maxHeight: "31px" }}
                 ></Button>
-                <Button
-                  size="sm"
-                  onClick={(e) => {
-                    handleActiveStreak(e);
-                  }}
-                  value="reset"
+                <OverlayTrigger
+                  placement="top"
+                  delay={{ show: 250, hide: 100 }}
+                  overlay={renderTooltip("Reset")}
                 >
-                  Start over
-                </Button>
+                  <Button
+                    size="sm"
+                    onClick={(e) => {
+                      handleActiveStreak(e);
+                    }}
+                    value="reset"
+                    className="bi bi-bootstrap-reboot"
+                    variant={"info"}
+                  ></Button>
+                </OverlayTrigger>
+                <OverlayTrigger
+                  placement="top"
+                  delay={{ show: 250, hide: 100 }}
+                  overlay={renderTooltip("Delete")}
+                >
+                  <Button
+                    variant="danger"
+                    size="sm"
+                    onClick={() => {
+                      handleDelete(habitItemIndex);
+                    }}
+                  >
+                    <i className="bi bi-trash"></i>
+                  </Button>
+                </OverlayTrigger>
               </div>
             </Col>
           </Row>

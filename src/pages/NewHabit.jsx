@@ -1,9 +1,26 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import HabitInput from "../components/habitsComp/HabitInput";
+const defaultH = {
+  title: "",
+  streak: 0,
+  prio: { tier: 0, str: "" },
+};
 const NewHabit = ({ habits, setHabits }) => {
-  const [newHabit, setNewHabit] = useState();
-  const handleSubmit = () => {
+  const [newHabit, setNewHabit] = useState(defaultH);
+  const [message, setMessage] = useState(null);
+  const [activeTimeOut, setActiveTimeOut] = useState(false);
+  useEffect(() => {
+    if (!activeTimeOut) {
+      setActiveTimeOut(true);
+      setTimeout(() => {
+        setMessage("");
+        setActiveTimeOut(false);
+      }, 2000);
+    }
+  }, [habits]);
+  const handleSubmit = (e) => {
+    e.preventDefault();
     if (newHabit) {
       const {
         title,
@@ -12,12 +29,15 @@ const NewHabit = ({ habits, setHabits }) => {
       } = newHabit;
       if (title && streak && tier && str) {
         setHabits((prev) => [...prev, newHabit]);
+        setNewHabit(defaultH);
         console.log(habits);
+        e.target.reset();
+        setMessage("Habit added!");
       } else {
-        alert("no habit 2");
+        alert("Fill out the form!");
       }
     } else {
-      alert("No habit 1");
+      alert("Fill out the form!");
     }
   };
   const handleChange = (e, targetProperty) => {
@@ -53,6 +73,10 @@ const NewHabit = ({ habits, setHabits }) => {
   return (
     <>
       <HabitInput {...{ habits, setHabits, handleChange, handleSubmit }} />
+
+      <h3 style={{ marginLeft: "7em", marginTop: "1em" }}>
+        {message && message}
+      </h3>
     </>
   );
 };

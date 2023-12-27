@@ -4,7 +4,12 @@ const HabitInput = ({ handleChange, handleSubmit, habits, setHabits }) => {
   return (
     <>
       <Container>
-        <Form className="w-100">
+        <Form
+          onSubmit={(e) => {
+            handleSubmit(e);
+          }}
+          className="w-100"
+        >
           <Form.Group className="mb-3 w-50" controlId="formBasicEmail">
             <Form.Label>New habit</Form.Label>
             <Form.Control
@@ -12,7 +17,7 @@ const HabitInput = ({ handleChange, handleSubmit, habits, setHabits }) => {
                 handleChange(e, "title");
               }}
               type="text"
-              placeholder="YOLO"
+              placeholder="Start a new good habit!"
             />
             <Form.Text>What will you do next?</Form.Text>
           </Form.Group>
@@ -20,12 +25,13 @@ const HabitInput = ({ handleChange, handleSubmit, habits, setHabits }) => {
           <Form.Group className="mb-3">
             <Form.Label>Streak</Form.Label>
             <Form.Control
-              className="w-25"
+              style={{ width: "6em" }}
               onChange={(e) => {
                 handleChange(e, "streak");
               }}
               type="number"
-              placeholder="Why start at zero?"
+              placeholder="0-365 days"
+              max={365}
             />
           </Form.Group>
           <Form.Group className="mb-3">
@@ -45,7 +51,7 @@ const HabitInput = ({ handleChange, handleSubmit, habits, setHabits }) => {
               <option>Low</option>
             </Form.Select>
           </Form.Group>
-          <Button onClick={handleSubmit}>Submit new habit</Button>
+          <Button type="submit">Submit new habit</Button>
         </Form>
       </Container>
     </>
