@@ -4,7 +4,12 @@ const HabitInput = ({ handleChange, handleSubmit, habits, setHabits }) => {
   return (
     <>
       <Container>
-        <Form className="w-100">
+        <Form
+          onSubmit={(e) => {
+            handleSubmit(e);
+          }}
+          className="w-100"
+        >
           <Form.Group className="mb-3 w-50" controlId="formBasicEmail">
             <Form.Label>New habit</Form.Label>
             <Form.Control
@@ -20,7 +25,7 @@ const HabitInput = ({ handleChange, handleSubmit, habits, setHabits }) => {
           <Form.Group className="mb-3">
             <Form.Label>Streak</Form.Label>
             <Form.Control
-              style={{ width: "10em" }}
+              style={{ width: "6em" }}
               onChange={(e) => {
                 handleChange(e, "streak");
               }}
@@ -46,7 +51,7 @@ const HabitInput = ({ handleChange, handleSubmit, habits, setHabits }) => {
               <option>Low</option>
             </Form.Select>
           </Form.Group>
-          <Button onClick={handleSubmit}>Submit new habit</Button>
+          <Button type="submit">Submit new habit</Button>
         </Form>
       </Container>
     </>

@@ -97,7 +97,7 @@ const Habit = ({
                 >
                   {streak}
                 </small>
-                {""} Days in a row
+                {""} days in a row
               </h5>
 
               <h6>
@@ -137,21 +137,6 @@ const Habit = ({
             </Col>
             <Col className="col-2">
               <div className="d-flex flex-column" style={{ width: "40px" }}>
-                <OverlayTrigger
-                  placement="top"
-                  delay={{ show: 250, hide: 100 }}
-                  overlay={renderTooltip("Delete")}
-                >
-                  <Button
-                    variant="danger"
-                    size="sm"
-                    onClick={() => {
-                      handleDelete(habitItemIndex);
-                    }}
-                  >
-                    <i className="bi bi-trash"></i>
-                  </Button>
-                </OverlayTrigger>
                 <Button
                   size="sm"
                   onClick={(e) => {
@@ -168,15 +153,38 @@ const Habit = ({
                   variant={"warning"}
                   value="dec"
                   className="bi bi-arrow-down"
+                  style={{ maxHeight: "31px" }}
                 ></Button>
-                <Button
-                  size="sm"
-                  onClick={(e) => {
-                    handleActiveStreak(e);
-                  }}
-                  value="reset"
-                  className="bi bi-bootstrap-reboot"
-                ></Button>
+                <OverlayTrigger
+                  placement="top"
+                  delay={{ show: 250, hide: 100 }}
+                  overlay={renderTooltip("Reset")}
+                >
+                  <Button
+                    size="sm"
+                    onClick={(e) => {
+                      handleActiveStreak(e);
+                    }}
+                    value="reset"
+                    className="bi bi-bootstrap-reboot"
+                    variant={"info"}
+                  ></Button>
+                </OverlayTrigger>
+                <OverlayTrigger
+                  placement="top"
+                  delay={{ show: 250, hide: 100 }}
+                  overlay={renderTooltip("Delete")}
+                >
+                  <Button
+                    variant="danger"
+                    size="sm"
+                    onClick={() => {
+                      handleDelete(habitItemIndex);
+                    }}
+                  >
+                    <i className="bi bi-trash"></i>
+                  </Button>
+                </OverlayTrigger>
               </div>
             </Col>
           </Row>

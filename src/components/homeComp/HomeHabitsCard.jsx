@@ -17,7 +17,14 @@ const HomeHabitsCard = ({ habit }) => {
         </Card.Header>
         <Card.Body className="card-habits-body">
           {" "}
-          <h4>Days: {habit.streak}</h4>
+          <h4>
+            {" "}
+            Activity Streak:{" "}
+            <small className={streak > 5 ? "habits-activity-streak-color" : ""}>
+              {streak}
+            </small>
+            {""} days in a row
+          </h4>
           <Row className="d-flex align-items-center justify-content-center">
             <Col className="col-1">
               <h5 style={{ marginLeft: "2em", marginBottom: "0" }}>0</h5>
