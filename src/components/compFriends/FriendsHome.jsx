@@ -9,7 +9,11 @@ const FriendsHome = ({ data }) => {
   return (
     <>
       <li className="friend-li comp-color text-color">
-        <img className="thumbnail-pic" src={person.picture.thumbnail} />
+        <img
+          alt="profile picture of user"
+          className="thumbnail-pic"
+          src={person.picture.thumbnail}
+        />
         {person.name.title} {person.name.first} {person.name.last}
       </li>
     </>
