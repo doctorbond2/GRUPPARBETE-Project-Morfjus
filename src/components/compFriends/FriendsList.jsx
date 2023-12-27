@@ -10,7 +10,7 @@ const FriendsList = ({ data }) => {
 
   return (
     <>
-      <li>
+      <li style={{ display: "inline-block" }}>
         <Card
           className="d-inline-flex m-2 comp-color"
           style={{ width: "18rem" }}
