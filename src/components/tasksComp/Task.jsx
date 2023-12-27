@@ -58,8 +58,8 @@ const Task = ({ task, onMarkAsCompleted, onSaveEdit, onRemoveTask }) => {
               <span>
                 <h3>{task.title}</h3>
               </span>
-              <h5>{task.description}</h5>
-              <h5>{formatTime(task.estimatedTime)}</h5>
+              <p>{task.description}</p>
+              <p>{formatTime(task.estimatedTime)}</p>
             </>
           )}
         </Col>

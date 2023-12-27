@@ -49,6 +49,7 @@ const TaskForms = ({ handleTimeChange, formatTime, minutes, addTask }) => {
         <InputGroup>
           {" "}
           <Form.Control
+            required
             placeholder="Task title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
