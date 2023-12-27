@@ -33,6 +33,7 @@ const HabitList = ({
                   <>
                     <Col className="col-6">
                       <ListGroup.Item
+                        key={"habit-" + habitItemIndex}
                         style={{
                           border: "none",
                           backgroundColor: "transparent",
@@ -45,6 +46,7 @@ const HabitList = ({
                             setSortedHabits,
                             habitItemIndex,
                             setHabits,
+                            habits,
                           }}
                         />
                       </ListGroup.Item>

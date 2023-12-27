@@ -36,6 +36,12 @@ a {
   max-height: 8rem;
 }
 
+.home-title-h2-general {
+  cursor: pointer;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
 .card-tasks {
   max-width: 20rem;
 }

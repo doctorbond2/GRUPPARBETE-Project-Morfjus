@@ -12,7 +12,7 @@ const HabitInput = ({ handleChange, handleSubmit, habits, setHabits }) => {
                 handleChange(e, "title");
               }}
               type="text"
-              placeholder="YOLO"
+              placeholder="Start a new good habit!"
             />
             <Form.Text>What will you do next?</Form.Text>
           </Form.Group>
@@ -20,12 +20,13 @@ const HabitInput = ({ handleChange, handleSubmit, habits, setHabits }) => {
           <Form.Group className="mb-3">
             <Form.Label>Streak</Form.Label>
             <Form.Control
-              className="w-25"
+              style={{ width: "10em" }}
               onChange={(e) => {
                 handleChange(e, "streak");
               }}
               type="number"
-              placeholder="Why start at zero?"
+              placeholder="0-365 days"
+              max={365}
             />
           </Form.Group>
           <Form.Group className="mb-3">

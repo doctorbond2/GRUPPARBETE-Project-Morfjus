@@ -30,11 +30,10 @@ const Home = ({ habits, setHabits, friends, setFriends, tasks, setTasks }) => {
           </Col>
           <Col>
             <h2
-              className="m-3"
+              className="m-3 home-title-h2-general"
               onClick={() => {
                 navigate("/habits");
               }}
-              style={{ cursor: "pointer" }}
             >
               Habits
             </h2>
@@ -45,11 +44,10 @@ const Home = ({ habits, setHabits, friends, setFriends, tasks, setTasks }) => {
                   .slice(-3)}
             </div>
             <h2
-              className="m-3"
+              className="m-3 home-title-h2-general"
               onClick={() => {
                 navigate("/tasks");
               }}
-              style={{ cursor: "pointer" }}
             >
               Tasks
             </h2>
