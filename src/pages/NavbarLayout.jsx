@@ -12,22 +12,22 @@ const NavbarLayout = () => {
       <Navbar expand="lg" className="comp-color">
         <Container>
           <Navbar.Brand as={Link} to="/">
-            <img src="public/logo.png" style={{ maxWidth: "75px" }}></img>
+            <img src="public/logo.png" alt="logo" style={{ maxWidth: "75px" }}></img>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
               <Nav.Link as={Link} to="/">
-                Home
+                <b>Home</b>
               </Nav.Link>
               <Nav.Link as={Link} to="/tasks">
-                Tasks
+                <b>Tasks</b>
               </Nav.Link>
               <Nav.Link as={Link} to="/friends">
-                My Friends
+                <b>My Friends</b>
               </Nav.Link>
               <Nav.Link as={Link} to="/habits">
-                Habits
+                <b>Habits</b>
               </Nav.Link>
             </Nav>
           </Navbar.Collapse>
