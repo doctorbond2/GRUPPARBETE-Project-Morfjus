@@ -78,6 +78,7 @@ const Habits = ({ habits, setHabits }) => {
         }
         case "Low": {
           setSortedHabits(newFilteredHabits.filter((x) => x.prio.str === prio));
+          break;
         }
       }
     } else {
